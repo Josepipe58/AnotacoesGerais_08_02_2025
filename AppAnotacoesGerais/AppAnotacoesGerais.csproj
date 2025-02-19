@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Imagens\Anotacoes.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Imagens\AnotacoesGerais.png" />
+    <None Remove="Imagens\PastaTurquesa.png" />
+    <None Remove="Imagens\Universo01.jpg" />
+    <None Remove="Imagens\Voltar.png" />
+    <None Remove="Recursos\AnotacoesGerais.png" />
+    <None Remove="Recursos\PastaTurquesa.png" />
+    <None Remove="Recursos\Voltar.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Imagens\Anotacoes.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AcessarDadosDoBanco\AcessarDadosDoBanco.csproj" />
+    <ProjectReference Include="..\GerenciarDados\GerenciarDados.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imagens\AnotacoesGerais.png" />
+    <Resource Include="Imagens\Cachoeira08.jpg" />
+    <Resource Include="Imagens\PastaTurquesa.png" />
+    <Resource Include="Imagens\Universo01.jpg" />
+    <Resource Include="Imagens\Voltar.png" />
+  </ItemGroup>
+
+</Project>
