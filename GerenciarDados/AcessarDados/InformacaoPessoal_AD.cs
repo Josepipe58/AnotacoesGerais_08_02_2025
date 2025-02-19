@@ -6,6 +6,23 @@ namespace GerenciarDados.AcessarDados
 {
     public class InformacaoPessoal_AD(bool Save = true) : Repositorio<InformacaoPessoal>(Save)
     {
+        public static ListaDeInformacaoPessoal ObterInformacaoPessoal()
+        {
+            try
+            {
+                using AppDbContexto contexto = new();
+                var listaDeInformacaoPessoal = contexto.TInformacaoPessoal.ToList();
+
+                return [.. listaDeInformacaoPessoal];
+            }
+            catch (Exception ex)
+            {
+                _nomeDoMetodo = "ObterInformacaoPessoal";
+                GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
+                return [];
+            }
+        }
+
         public static List<InformacaoPessoal> ConsultarPorTitulo(string titulo)
         {
             try

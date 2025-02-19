@@ -11,12 +11,17 @@
 
   <ItemGroup>
     <None Remove="Imagens\AnotacoesGerais.png" />
+    <None Remove="Imagens\book.ico" />
+    <None Remove="Imagens\MeuLogotipo.png" />
     <None Remove="Imagens\PastaTurquesa.png" />
     <None Remove="Imagens\Universo01.jpg" />
     <None Remove="Imagens\Voltar.png" />
     <None Remove="Recursos\AnotacoesGerais.png" />
+    <None Remove="Recursos\MeuLogotipo.png" />
     <None Remove="Recursos\PastaTurquesa.png" />
     <None Remove="Recursos\Voltar.png" />
+    <None Remove="Views\Menus\book.ico" />
+    <None Remove="Views\Menus\MeuLogotipo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +35,9 @@
 
   <ItemGroup>
     <Resource Include="Imagens\AnotacoesGerais.png" />
+    <Resource Include="Imagens\book.ico" />
     <Resource Include="Imagens\Cachoeira08.jpg" />
+    <Resource Include="Imagens\MeuLogotipo.png" />
     <Resource Include="Imagens\PastaTurquesa.png" />
     <Resource Include="Imagens\Universo01.jpg" />
     <Resource Include="Imagens\Voltar.png" />

@@ -1,7 +1,4 @@
-﻿using AppAnotacoesGerais.Models;
-using AppAnotacoesGerais.ViewModels.AnotacoesGeraisVM;
-using AppAnotacoesGerais.Views.AnotacoesGeraisViews;
-using AppAnotacoesGerais.Views.ConsumoDeGasViews;
+﻿using AppAnotacoesGerais.Views.AnotacoesGeraisViews;
 using AppAnotacoesGerais.Views.InformacoesPessoaisViews;
 using AppAnotacoesGerais.Views.Menus;
 using GerenciarDados.Mensagens;
@@ -16,7 +13,6 @@ namespace AppAnotacoesGerais.Comandos
 {
     public class ListaDeItemsDoMenu
     {
-        public string ConsultarDados { get; set; } = string.Empty;
         public string GerenciarDados { get; set; } = string.Empty;
     }
     public partial class ComandosDaTelaPrincipal : RelayCommand
@@ -30,24 +26,15 @@ namespace AppAnotacoesGerais.Comandos
 
         public ComandosDaTelaPrincipal()
         {
-            ObservableCollection<ListaDeItemsDoMenu> itemsConsultarDados =
-            [
-                new ListaDeItemsDoMenu{ ConsultarDados = "Página Inicial" },
-                new ListaDeItemsDoMenu{ ConsultarDados = "Anotações Gerais" },
-                new ListaDeItemsDoMenu{ ConsultarDados = "Informações Pessoais" },
-                new ListaDeItemsDoMenu{ ConsultarDados = "Consumo de Gás" },
-            ];
-
-            MenuItemsDeConsultarDados = new CollectionViewSource { Source = itemsConsultarDados };
-
             ObservableCollection<ListaDeItemsDoMenu> itemsGerenciarDados =
             [
+                new ListaDeItemsDoMenu{ GerenciarDados = "Página Inicial" },
                 new ListaDeItemsDoMenu{ GerenciarDados = "Anotações Gerais" },
                 new ListaDeItemsDoMenu{ GerenciarDados = "Informações Pessoais" },
                 new ListaDeItemsDoMenu{ GerenciarDados = "Submenu de Anotações Gerais" },
             ];
-
             MenuItemsDeGerenciarDados = new CollectionViewSource { Source = itemsGerenciarDados };
+
             // Configura a página de inicialização.
             SelecionarControleDeUsuario = new PaginaInicial();
         }
@@ -70,16 +57,6 @@ namespace AppAnotacoesGerais.Comandos
             }
         }
 
-        private ICommand _comandoDoMenuConsultarDados;
-        public ICommand ComandoDoMenuConsultarDados
-        {
-            get
-            {
-                _comandoDoMenuConsultarDados ??= new RelayCommand(param => MenuDoMenuInicialDeConsultarDados(param));
-                return _comandoDoMenuConsultarDados;
-            }
-        }
-
         private ICommand _comandoDoMenuGerenciarDados;
         public ICommand ComandoDoMenuGerenciarDados
         {
@@ -87,27 +64,6 @@ namespace AppAnotacoesGerais.Comandos
             {
                 _comandoDoMenuGerenciarDados ??= new RelayCommand(param => MenuDoMenuInicialDeGerenciarDados(param));
                 return _comandoDoMenuGerenciarDados;
-            }
-        }
-
-        public void MenuDoMenuInicialDeConsultarDados(object parameter)
-        {
-            try
-            {
-                SelecionarControleDeUsuario = parameter switch
-                {
-                    "Página Inicial" => new PaginaInicial(),
-                    "Anotações Gerais" => new AnotacaoGeralView(),
-                    "Informações Pessoais" => new InformacaoPessoalView(),
-                    "Consumo de Gás" => new ConsumoDeGasView(),
-                    _ => new PaginaInicial()
-                };
-            }
-            catch (Exception ex)
-            {
-                _nomeDoMetodo = "MenuDoMenuInicial";
-                GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
-                return;
             }
         }
 
@@ -119,6 +75,7 @@ namespace AppAnotacoesGerais.Comandos
                 {
                     "Página Inicial" => new PaginaInicial(),
                     "Anotações Gerais" => new AnotacaoGeralView(),
+                    "Informações Pessoais" => new InformacaoPessoalView(),
                     "Submenu de Anotações Gerais" => new SubmenuDeAnotacoesGerais(),
                     _ => new PaginaInicial()
                 };

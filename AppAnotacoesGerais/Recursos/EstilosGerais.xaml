@@ -5,6 +5,7 @@
 
     <ImageBrush x:Key="Voltar_Imagem" ImageSource="/Imagens/Voltar.png" Stretch="None"/>
     <ImageBrush x:Key="AnotacoesGerais_Imagem" ImageSource="/Imagens/AnotacoesGerais.png" Stretch="Fill"/>
+    <ImageBrush x:Key="MenuIniciar_Imagem" ImageSource="/Imagens/MeuLogotipo.png" Stretch="Fill"/>
 
     <!--================================================| CalendarioDatePicker |==============================================================-->
 

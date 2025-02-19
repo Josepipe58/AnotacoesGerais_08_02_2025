@@ -29,34 +29,15 @@
 
             <!--| Grid Lateral |-->
             <Grid Width="370" Grid.Column="1" Margin="0,10,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="470"/>
-                    <RowDefinition Height="480*"/>
-                </Grid.RowDefinitions>
-                
-                <!--| Menu Lateral Superior |-->
-                <Label Content="CONSULTAR DADOS" FontSize="20" FontWeight="Bold" Height="50" Padding="80 10 0 0" VerticalAlignment="Top" 
-                       Background="#FF021507" Foreground="#FF11E4E4"/>
-                <ItemsControl ItemsSource="{Binding SourceConsultarDados}" Background="#FF021507" Margin="0,50,0,5">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Width="280" Margin="0,15,20,0" Height="80">
-                                <Button Content="{Binding ConsultarDados}" FontSize="14" Width="280" Style="{StaticResource BtnRetangularVerdeEscuro}"
-                                        CommandParameter="{Binding ConsultarDados}" Command="{Binding DataContext.ComandoDoMenuConsultarDados, RelativeSource={RelativeSource 
-                                    AncestorType={x:Type ItemsControl}, Mode=FindAncestor}}" Margin="0,20,0,0" Height="60"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
 
-                <!--| Menu Lateral Inferior |-->
+                <!--| Menu Lateral |-->
                 <Label Content="GERENCIAR DADOS" FontSize="20" FontWeight="Bold" Padding="80 10 0 0" 
-                       Background="#FF021507" Foreground="#FF11E4E4" Margin="0,0,0,449" Grid.Row="1"/>
-                <Grid Width="370" Grid.Row="1" Margin="0,20,0,15">
-                    <ItemsControl ItemsSource="{Binding SourceGerenciarDados}" Background="#FF021507" Margin="0,30,0,0">
+                       Background="#FF021507" Foreground="#FF11E4E4" Margin="0,0,0,15"/>
+                <Grid Grid.Row="1" Margin="0,20,0,15">
+                    <ItemsControl ItemsSource="{Binding SourceGerenciarDados}" Background="#FF021507" Margin="0,40,0,0">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Width="280" Margin="0 5 20 0" Height="80">
+                                <StackPanel Width="280" Margin="10 5 20 0" Height="100">
                                     <Button Content="{Binding GerenciarDados}" FontSize="14" Width="280" Style="{StaticResource BtnRetangularVerdeEscuro}"
                                             CommandParameter="{Binding GerenciarDados}" Command="{Binding DataContext.ComandoDoMenuGerenciarDados, 
                                             RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}}" Margin="0,20,0,0" Height="60"/>
@@ -67,12 +48,13 @@
 
                     <!--| Botões |-->
                     <Button x:Name="BtnSqlServer" Content="Abrir Sql Server" FontWeight="Bold" FontSize="16" Style="{DynamicResource BtnRetangularVerdeEscuro}" 
-                            Command="{Binding ComandoAbrirBancoDeDados}" Height="60" Width="280" Margin="35,310,55,0" HorizontalAlignment="Stretch"/>
-                    
+                            Command="{Binding ComandoAbrirBancoDeDados}" Height="60" Width="280" Margin="45,480,45,0" HorizontalAlignment="Stretch"/>
+
                     <Button x:Name="BtnSair" Content="Sair do Aplicativo" FontWeight="Bold" FontSize="16" Style="{DynamicResource BtnRetangularVerdeEscuro}" 
                             Command="{Binding ComandoSairDoAplicativo}"
-                            Height="60" Width="280" Margin="35,390,55,0" HorizontalAlignment="Stretch"/>
-                </Grid>                
+                            Height="60" Width="280" Margin="45,580,45,0" HorizontalAlignment="Stretch"/>
+                </Grid>
+                <Grid Margin="38,676,42,42" Background="{DynamicResource MenuIniciar_Imagem}" />
             </Grid>
             <!--| Página Principal |-->
             <Grid Margin="5,5,0,0" Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Height="980">

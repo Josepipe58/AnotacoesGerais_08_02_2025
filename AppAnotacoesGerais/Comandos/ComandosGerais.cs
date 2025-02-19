@@ -1,5 +1,4 @@
-﻿using AppAnotacoesGerais.Models;
-using AppAnotacoesGerais.Views.AnotacoesGeraisViews;
+﻿using AppAnotacoesGerais.Views.AnotacoesGeraisViews;
 using AppAnotacoesGerais.Views.ConsumoDeGasViews;
 using AppAnotacoesGerais.Views.Menus;
 using System.Windows.Input;
@@ -19,7 +18,6 @@ namespace AppAnotacoesGerais.Comandos
             }
         }
 
-       
         #region | Comandos de Voltar Para o Submenu de Anotacoes Gerais |
 
         private void VoltarParaSubmenuDeAnotacoesGerais()
@@ -104,8 +102,8 @@ namespace AppAnotacoesGerais.Comandos
         #region | Comandos de Anotaçoes Gerais|
 
         public void AbrirJanelaDeCadastrar()
-        {            
-            SelecionarControleDeUsuario = new CadastrarAnotacaoGeralView();           
+        {
+            SelecionarControleDeUsuario = new CadastrarAnotacaoGeralView();
         }
 
         private ICommand _comandoAbrirJanelaDeCadastrar;
