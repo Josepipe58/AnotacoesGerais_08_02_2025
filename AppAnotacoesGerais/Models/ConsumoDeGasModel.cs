@@ -15,6 +15,17 @@ namespace AppAnotacoesGerais.Models
             }
         }
 
+        private DateTime _dataAnterior;
+        public DateTime DataAnterior
+        {
+            get { return _dataAnterior; }
+            set
+            {
+                _dataAnterior = value;
+                OnPropertyChanged(nameof(DataAnterior));
+            }
+        }
+
         private DateTime _dataDaTroca;
         public DateTime DataDaTroca
         {

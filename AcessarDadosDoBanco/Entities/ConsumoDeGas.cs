@@ -10,6 +10,9 @@ namespace AcessarDadosDoBanco.Entities
         public int Id { get; set; }
 
         [Column(TypeName = "date")]
+        public DateTime DataAnterior { get; set; }
+
+        [Column(TypeName = "date")]
         public DateTime DataDaTroca { get; set; }
 
         public int DiasDeConsumo { get; set; }
@@ -26,6 +29,7 @@ namespace AcessarDadosDoBanco.Entities
         public ConsumoDeGas(ConsumoDeGas consumoDeGas)
         {
             Id = consumoDeGas.Id;
+            DataAnterior = consumoDeGas.DataAnterior;
             DataDaTroca = consumoDeGas.DataDaTroca;
             DiasDeConsumo = consumoDeGas.DiasDeConsumo;
             DataDaCompra = consumoDeGas.DataDaCompra;

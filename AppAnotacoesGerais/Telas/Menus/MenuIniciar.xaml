@@ -6,7 +6,7 @@
         xmlns:comando="clr-namespace:AppAnotacoesGerais.Comandos"
         mc:Ignorable="d" xml:lang="pt-BR" Height="1000" Width="1400" 
         WindowStartupLocation="CenterScreen" WindowState="Maximized" 
-        WindowStyle="SingleBorderWindow">
+        WindowStyle="SingleBorderWindow" Cursor="Hand">
 
     <!--Comandos da Tela Principal-->
     <Window.DataContext>

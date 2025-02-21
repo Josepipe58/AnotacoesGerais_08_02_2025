@@ -26,14 +26,32 @@ namespace AppAnotacoesGerais.ViewModels.ConsumoDeGasVM
             }
         }
 
+        //Lista do DataGrid Dados
+        private List<ConsumoDeGas> _listaDeCarregarCombobox;
+        public List<ConsumoDeGas> ListaDeCarregarCombobox
+        {
+            get { return _listaDeCarregarCombobox; }
+            set
+            {
+                if (_listaDeCarregarCombobox != value)
+                {
+                    _listaDeCarregarCombobox = value;
+                    OnPropertyChanged(nameof(ListaDeCarregarCombobox));
+                }
+            }
+        }
+
         public ConsumoDeGasViewModel()
         {
             //ConsumaDeGas = new ConsumaDeGas();
             ConsumoDeGasModel = new ConsumoDeGasModel();
             ListaDeConsumoDeGas = [];
 
-            //DataGrid Dados
+            // Lista de Carregar Combobox
             ConsumoDeGas_AD consumoDeGas_AD = new();
+            ListaDeCarregarCombobox = consumoDeGas_AD.SelecionarTodos();
+
+            //DataGrid Dados            
             ListaDeConsumoDeGas = ConsumoDeGas_AD.ObterConsumoDeGas();
         }
     }

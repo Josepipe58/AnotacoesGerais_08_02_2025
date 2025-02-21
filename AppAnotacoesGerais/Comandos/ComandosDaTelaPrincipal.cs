@@ -1,5 +1,5 @@
-﻿using AppAnotacoesGerais.Views.AnotacoesGeraisViews;
-using AppAnotacoesGerais.Views.InformacoesPessoaisViews;
+﻿using AppAnotacoesGerais.Telas.AnotacoesGerais;
+using AppAnotacoesGerais.Telas.InformacoesPessoais;
 using AppAnotacoesGerais.Views.Menus;
 using GerenciarDados.Mensagens;
 using System.Collections.ObjectModel;
@@ -74,8 +74,8 @@ namespace AppAnotacoesGerais.Comandos
                 SelecionarControleDeUsuario = parameter switch
                 {
                     "Página Inicial" => new PaginaInicial(),
-                    "Anotações Gerais" => new AnotacaoGeralView(),
-                    "Informações Pessoais" => new InformacaoPessoalView(),
+                    "Anotações Gerais" => new AnotacaoGeral_UI(),
+                    "Informações Pessoais" => new InformacaoPessoal_UI(),
                     "Submenu de Anotações Gerais" => new SubmenuDeAnotacoesGerais(),
                     _ => new PaginaInicial()
                 };

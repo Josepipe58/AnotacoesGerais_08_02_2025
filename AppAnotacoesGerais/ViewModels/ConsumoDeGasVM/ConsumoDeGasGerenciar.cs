@@ -15,9 +15,19 @@ namespace AppAnotacoesGerais.ViewModels.ConsumoDeGasVM
             {
                 try
                 {
+                    /*
+                    DateTime dataInicial, dataFinal;
+                    TimeSpan diasConsumo;
+                    dataInicial = DateTime.Parse(CbxDataAnterior.Text);
+                    dataFinal = DateTime.Parse(TxtDiaTroca.Text);
+                    diasConsumo = dataFinal - dataInicial;
+                    TbxDiasConsumo.Text = Convert.ToString(diasConsumo.Days);
+                    */
+
                     ConsumoDeGas_AD consumoDeGas_AD = new();
                     ConsumoDeGas consumoDeGas = new()
                     {
+                        DataAnterior = consumoDeGasModel.DataAnterior,
                         DataDaTroca = consumoDeGasModel.DataDaTroca,
                         DiasDeConsumo = consumoDeGasModel.DiasDeConsumo,
                         DataDaCompra = consumoDeGasModel.DataDaCompra,
@@ -58,6 +68,7 @@ namespace AppAnotacoesGerais.ViewModels.ConsumoDeGasVM
                     ConsumoDeGas consumoDeGas = new()
                     {
                         Id = consumoDeGasModel.Id,
+                        DataAnterior = consumoDeGasModel.DataAnterior,
                         DataDaTroca = consumoDeGasModel.DataDaTroca,
                         DiasDeConsumo = consumoDeGasModel.DiasDeConsumo,
                         DataDaCompra = consumoDeGasModel.DataDaCompra,
@@ -143,6 +154,7 @@ namespace AppAnotacoesGerais.ViewModels.ConsumoDeGasVM
         //Atualizar
         public void AtualizarDados()
         {
+            ConsumoDeGasModel.DataAnterior = DateTime.Now;
             LimparDados();
         }
     }

@@ -20,8 +20,8 @@
     <None Remove="Recursos\MeuLogotipo.png" />
     <None Remove="Recursos\PastaTurquesa.png" />
     <None Remove="Recursos\Voltar.png" />
-    <None Remove="Views\Menus\book.ico" />
-    <None Remove="Views\Menus\MeuLogotipo.png" />
+    <None Remove="Telas\Menus\book.ico" />
+    <None Remove="Telas\Menus\MeuLogotipo.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,12 +5,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
+namespace AppAnotacoesGerais.Telas.GerenciarSubCategorias
 {
-    public partial class SubCategoriaView : UserControl
+    public partial class SubCategoria_UI : UserControl
     {
         public string _nomeDoMetodo = string.Empty;
-        public SubCategoriaView()
+        public SubCategoria_UI()
         {
             InitializeComponent();            
             ComboBoxDeCategorias();

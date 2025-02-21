@@ -5,29 +5,18 @@ using GerenciarDados.Mensagens;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
+namespace AppAnotacoesGerais.Telas.AnotacoesGerais
 {
-    public partial class AlterarAnotacaoGeralView : Window
+    public partial class AlterarAnotacaoGeral_UI : Window
     {
         public AnotacaoGeralModel AnotacaoGeralModel { get; set; }
         public string _nomeDoMetodo = string.Empty;
-        public AlterarAnotacaoGeralView()
+        public AlterarAnotacaoGeral_UI()
         {
             InitializeComponent();
-
-            //Atualizar com a Data do Sistema
-            if (DtpData.Text == "")
-            {
-                DtpData.Text = Convert.ToString(DateTime.Today);
-            }
-            else
-            {
-                DtpData.Text = Convert.ToString(DateTime.Today);
-            }
-            ComboBoxCategoria();
-            ContadorDeRegistros();
+            ComboBoxCategoria();          
         }
-        public AlterarAnotacaoGeralView(AnotacaoGeralModel anotacaoGeralModel) : this()
+        public AlterarAnotacaoGeral_UI(AnotacaoGeralModel anotacaoGeralModel) : this()
         {
             AnotacaoGeralModel = anotacaoGeralModel;
         }
@@ -69,40 +58,44 @@ namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
             TxtDescricao.Focus();
         }
 
-        private void BtnConsultar_Click(object sender, RoutedEventArgs e)
+        private void BtnAlterar_Click(object sender, RoutedEventArgs e)
         {
-            AnotacaoGeralModel = new();
-            if (TxtConsultar.Text != "")
+            if (TxtId.Text != "" && TxtDescricao.Text != "")
             {
-                AnotacaoGeralModel.Id = Convert.ToInt32(TxtConsultar.Text);
-
-                AnotacaoGeral_AD anotacaoGeral_AD = new();
-                AnotacaoGeral anotacaoGeral = new();
-                bool retorno = anotacaoGeral_AD.VerificarRegistros(Convert.ToInt32(TxtConsultar.Text));
-                if (retorno)
+                try
                 {
-                    if (AnotacaoGeralModel.Id > 0)
-                        Close();
+                    AnotacaoGeral_AD anotacaoGeral_AD = new();
+                    AnotacaoGeral anotacaoGeral = new()
+                    {
+                        Id = Convert.ToInt32(TxtId.Text),
+                        NomeDaCategoria = CbxCategoria.Text,
+                        NomeDaSubCategoria = CbxSubCategoria.Text,
+                        NomeDaDescricao = CbxNomeDaDescricao.Text,
+                        Descricao = TxtDescricao.Text,
+                        Data = Convert.ToDateTime(DtpData.Text),
+                    };
+                    anotacaoGeral_AD.Alterar(anotacaoGeral);
+                    GerenciarMensagens.SucessoAoAlterar(anotacaoGeral.Id);
+                    Close();
+                    //LimparDados();
+                }
+                catch (Exception erro)
+                {
+                    _nomeDoMetodo = "Alterar";
+                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(erro, _nomeDoMetodo);
+                    return;
                 }
             }
-            else if (TxtConsultar.Text == "")
+            else if (TxtId.Text == "" && TxtDescricao.Text != "")
             {
-                _nomeDoMetodo = "BtnConsultar_Click";
+                GerenciarMensagens.ErroAoAlterarOuExcluir();
+                return;
+            }
+            else
+            {
                 GerenciarMensagens.PreencherCampoVazio();
                 return;
             }
-        }
-
-        public void ContadorDeRegistros()
-        {
-            AnotacaoGeral_AD anotacaoGeral_AD = new();
-            int contador = anotacaoGeral_AD.ContadorRegistros();
-            if (contador <= 0)
-            {
-                MessageBox.Show($"Atenção! Não existe nenhum registro no Banco de Dados.",
-                            "Aviso!", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            TxtQtdeRegistros.Text = Convert.ToString(contador);
         }
 
         private void BtnSair_Click(object sender, RoutedEventArgs e)

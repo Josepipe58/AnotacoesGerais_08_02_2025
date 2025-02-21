@@ -1,5 +1,8 @@
-﻿using AppAnotacoesGerais.Views.AnotacoesGeraisViews;
-using AppAnotacoesGerais.Views.ConsumoDeGasViews;
+﻿using AppAnotacoesGerais.Telas.AnotacoesGerais;
+using AppAnotacoesGerais.Telas.GerenciarCategorias;
+using AppAnotacoesGerais.Telas.GerenciarConsumoDeGas;
+using AppAnotacoesGerais.Telas.GerenciarNomeDaDescricao;
+using AppAnotacoesGerais.Telas.GerenciarSubCategorias;
 using AppAnotacoesGerais.Views.Menus;
 using System.Windows.Input;
 
@@ -45,7 +48,7 @@ namespace AppAnotacoesGerais.Comandos
 
         public void CategoriaComando()
         {
-            SelecionarControleDeUsuario = new CategoriaView();
+            SelecionarControleDeUsuario = new Categoria_UI();
         }
 
         private ICommand _comandoDaCategoria;
@@ -63,7 +66,7 @@ namespace AppAnotacoesGerais.Comandos
 
         public void SubCategoriaComando()
         {
-            SelecionarControleDeUsuario = new SubCategoriaView();
+            SelecionarControleDeUsuario = new SubCategoria_UI();
         }
 
         private ICommand _comandoDaSubCategoria;
@@ -81,7 +84,7 @@ namespace AppAnotacoesGerais.Comandos
 
         public void NomeDaDescricaoComando()
         {
-            SelecionarControleDeUsuario = new NomeDaDescricaoView();
+            SelecionarControleDeUsuario = new NomeDaDescricao_UI();
         }
 
         private ICommand _comandoNomeDaDescricao;
@@ -103,7 +106,7 @@ namespace AppAnotacoesGerais.Comandos
 
         public void AbrirJanelaDeCadastrar()
         {
-            SelecionarControleDeUsuario = new CadastrarAnotacaoGeralView();
+            SelecionarControleDeUsuario = new CadastrarAnotacaoGeral_UI();
         }
 
         private ICommand _comandoAbrirJanelaDeCadastrar;
@@ -125,7 +128,7 @@ namespace AppAnotacoesGerais.Comandos
 
         public void ConsumoDeGasComando()
         {
-            SelecionarControleDeUsuario = new ConsumoDeGasView();
+            SelecionarControleDeUsuario = new ConsumoDeGas_UI();
         }
 
         private ICommand _comandoDeConsumoDeGas;

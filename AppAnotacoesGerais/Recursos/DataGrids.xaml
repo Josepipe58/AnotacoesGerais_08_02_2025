@@ -215,7 +215,8 @@
         <Setter Property="HorizontalGridLinesBrush" Value="#FF0E1AD2"/>
         <Setter Property="VerticalGridLinesBrush" Value="#FF0E1AD2"/>
         <Setter Property="SelectedIndex" Value="-1"/>
-        <Setter Property="BorderThickness" Value="1"/>        
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="IsReadOnly" Value="False"/>
         <Setter Property="RowDetailsTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -225,8 +226,8 @@
                                      BorderThickness="2,4,3,9">
 
                             <RichTextBox x:Name="RtbEditor" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF0D0740" AcceptsTab="True" 
-                                             AcceptsReturn="True" Height="Auto" Width="1380" MinHeight="100" MaxHeight="500" Margin="10,10,10,10" Padding="10,10,10,10"
-                                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
+                                         IsReadOnly="False" AcceptsReturn="True" Height="Auto" Width="1380" MinHeight="100" MaxHeight="500" Margin="10,10,10,10" 
+                                         Padding="10,10,10,10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
 
                                 <FlowDocument PageWidth="{Binding ActualWidth, ElementName=RtbDescricao}">
                                     <Paragraph>

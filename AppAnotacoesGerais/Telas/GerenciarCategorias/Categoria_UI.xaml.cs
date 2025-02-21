@@ -2,12 +2,12 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
+namespace AppAnotacoesGerais.Telas.GerenciarCategorias
 {
-    public partial class CategoriaView : UserControl
+    public partial class Categoria_UI : UserControl
     {
         public string _nomeDoMetodo = string.Empty;
-        public CategoriaView()
+        public Categoria_UI()
         {
             InitializeComponent();
         }

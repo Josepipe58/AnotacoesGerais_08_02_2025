@@ -4,12 +4,12 @@ using GerenciarDados.Mensagens;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
+namespace AppAnotacoesGerais.Telas.GerenciarNomeDaDescricao
 {
-    public partial class NomeDaDescricaoView : UserControl
+    public partial class NomeDaDescricao_UI : UserControl
     {
         public string _nomeDoMetodo = string.Empty;
-        public NomeDaDescricaoView()
+        public NomeDaDescricao_UI()
         {
             InitializeComponent();
             ComboBoxDeCategorias();

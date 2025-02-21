@@ -2,19 +2,18 @@
 using AppAnotacoesGerais.Models;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
-using System.Threading.Channels;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
+namespace AppAnotacoesGerais.Telas.AnotacoesGerais
 {
-    public partial class CadastrarAnotacaoGeralView : UserControl
+    public partial class CadastrarAnotacaoGeral_UI : UserControl
     {
         public AnotacaoGeralModel AnotacaoGeralModel { get; set; }
         public AnotacaoGeral AnotacaoGeral { get; set; }
         public string _nomeDoMetodo = string.Empty;
 
-        public CadastrarAnotacaoGeralView()
+        public CadastrarAnotacaoGeral_UI()
         {
             InitializeComponent();
 
@@ -33,7 +32,7 @@ namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
             ContadorDeRegistros();
         }
 
-        public CadastrarAnotacaoGeralView(AnotacaoGeralModel anotacaoGeralModel) : this()
+        public CadastrarAnotacaoGeral_UI(AnotacaoGeralModel anotacaoGeralModel) : this()
         {
             AnotacaoGeralModel = anotacaoGeralModel;
         }
@@ -75,6 +74,90 @@ namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
             CbxNomeDaDescricao.SelectedIndex = 0;
             TxtDescricao.Focus();
         }
+
+        private void BtnCadastrar_Click(object sender, RoutedEventArgs e)
+        {
+            if (TxtId.Text == "" && TxtDescricao.Text != "")
+            {
+                try
+                {
+                    AnotacaoGeral_AD anotacaoGeral_AD = new();
+                    AnotacaoGeral anotacaoGeral = new()
+                    {
+                        NomeDaCategoria = CbxCategoria.Text,
+                        NomeDaSubCategoria = CbxSubCategoria.Text,
+                        NomeDaDescricao = CbxNomeDaDescricao.Text,
+                        Descricao = TxtDescricao.Text,
+                        Data = Convert.ToDateTime(DtpData.Text),
+                    };
+                    anotacaoGeral_AD.Cadastrar(anotacaoGeral);
+
+                    GerenciarMensagens.SucessoAoCadastrar(anotacaoGeral.Id);
+                    LimparDados();
+                }
+                catch (Exception ex)
+                {
+                    _nomeDoMetodo = "BtnCadastrar_Click";
+                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
+                    return;
+                }
+            }
+            else if (TxtId.Text != "" && TxtDescricao.Text != "")
+            {
+                GerenciarMensagens.ErroAoCadastrar();
+                TxtDescricao.Focus();
+                return;
+            }
+            else
+            {
+                GerenciarMensagens.PreencherCampoVazio();
+                TxtDescricao.Focus();
+                return;
+            }
+        }
+
+        private void BtnAlterar_Click(object sender, RoutedEventArgs e)
+        {
+            if (TxtId.Text != "" && TxtDescricao.Text != "")
+            {
+                try
+                {
+                    AnotacaoGeral_AD anotacaoGeral_AD = new();
+                    AnotacaoGeral anotacaoGeral = new()
+                    {
+                        Id = Convert.ToInt32(TxtId.Text),
+                        NomeDaCategoria = CbxCategoria.Text,
+                        NomeDaSubCategoria = CbxSubCategoria.Text,
+                        NomeDaDescricao = CbxNomeDaDescricao.Text,
+                        Descricao = TxtDescricao.Text,
+                        Data = Convert.ToDateTime(DtpData.Text),
+                    };
+                    anotacaoGeral_AD.Alterar(anotacaoGeral);
+
+                    GerenciarMensagens.SucessoAoCadastrar(anotacaoGeral.Id);
+                    LimparDados();
+                }
+                catch (Exception ex)
+                {
+                    _nomeDoMetodo = "BtnAlterar_Click";
+                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
+                    return;
+                }
+            }
+            else if (TxtId.Text == "" && TxtDescricao.Text != "")
+            {
+                GerenciarMensagens.ErroAoCadastrar();
+                TxtDescricao.Focus();
+                return;
+            }
+            else
+            {
+                GerenciarMensagens.PreencherCampoVazio();
+                TxtDescricao.Focus();
+                return;
+            }
+        }
+
         private void BtnConsultar_Click(object sender, RoutedEventArgs e)
         {
             if (TxtConsultar.Text != "")
@@ -135,9 +218,23 @@ namespace AppAnotacoesGerais.Views.AnotacoesGeraisViews
             TxtQtdeRegistros.Text = Convert.ToString(contador);
         }
 
-        private void BtnSair_Click(object sender, RoutedEventArgs e)
+        private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Close();
+            CbxCategoria.Text = "";
+            CbxCategoria.SelectedIndex = 0;
+            CbxSubCategoria.Text = "";
+            CbxSubCategoria.SelectedIndex = 0;
+            CbxNomeDaDescricao.Text = "";
+            CbxNomeDaDescricao.SelectedIndex = 0;            
+            DtpData.Text = Convert.ToString(DateTime.Today);
+            LimparDados();
+        }
+
+        //Limpar
+        public void LimparDados()
+        {
+            TxtId.Text = "";
+            TxtDescricao.Text = "";           
         }
     }
 }
