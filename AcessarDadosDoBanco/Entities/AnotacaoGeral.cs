@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AcessarDadosDoBanco.Entities
@@ -23,18 +22,5 @@ namespace AcessarDadosDoBanco.Entities
 
         [Column(TypeName = "date")]
         public DateTime Data { get; set; }
-
-        public AnotacaoGeral() { }
-
-        public AnotacaoGeral(AnotacaoGeral anotacaoGeral)
-        {
-            Id = anotacaoGeral.Id;
-            NomeDaCategoria = anotacaoGeral.NomeDaCategoria;
-            NomeDaSubCategoria = anotacaoGeral.NomeDaSubCategoria;
-            NomeDaDescricao = anotacaoGeral.NomeDaDescricao;
-            Descricao = anotacaoGeral.Descricao;
-            Data = anotacaoGeral.Data;
-        }
     }
-    public class ListaDeAnotacoesGerais : ObservableCollection<AnotacaoGeral> { }
 }

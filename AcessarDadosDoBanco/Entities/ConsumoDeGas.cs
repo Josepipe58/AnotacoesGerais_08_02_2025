@@ -1,16 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.ObjectModel;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AcessarDadosDoBanco.Entities       
+namespace AcessarDadosDoBanco.Entities
 {
     public class ConsumoDeGas
     {
         [Key]
         public int Id { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime DataAnterior { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime DataDaTroca { get; set; }
@@ -25,17 +21,5 @@ namespace AcessarDadosDoBanco.Entities
 
         [Required, StringLength(30)]
         public string Fornecedor { get; set; }
-        public ConsumoDeGas() { }
-        public ConsumoDeGas(ConsumoDeGas consumoDeGas)
-        {
-            Id = consumoDeGas.Id;
-            DataAnterior = consumoDeGas.DataAnterior;
-            DataDaTroca = consumoDeGas.DataDaTroca;
-            DiasDeConsumo = consumoDeGas.DiasDeConsumo;
-            DataDaCompra = consumoDeGas.DataDaCompra;
-            Preco = consumoDeGas.Preco;
-            Fornecedor = consumoDeGas.Fornecedor;
-        }
     }
-    public class ListaDeConsumoDeGas : ObservableCollection<ConsumoDeGas> { }
 }

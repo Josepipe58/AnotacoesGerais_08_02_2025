@@ -6,7 +6,7 @@ namespace GerenciarDados.AcessarDados
 {
     public class SubCategoria_AD(bool Save = true) : Repositorio<SubCategoria>(Save)
     {
-        public static ListaDeSubCategorias ObterSubCategorias()
+        public static List<SubCategoria> ObterSubCategorias()
         {
             try
             {
@@ -35,7 +35,7 @@ namespace GerenciarDados.AcessarDados
             }
         }
 
-        public static ListaDeSubCategorias ObterSubCategoriasPorId(int id)
+        public static List<SubCategoria> ObterSubCategoriasPorId(int id)
         {
             try
             {

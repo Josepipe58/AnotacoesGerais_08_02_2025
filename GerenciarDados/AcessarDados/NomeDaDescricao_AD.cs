@@ -6,7 +6,7 @@ namespace GerenciarDados.AcessarDados
 {
     public class NomeDaDescricao_AD(bool Save = true) : Repositorio<NomeDaDescricao>(Save)
     {        
-        public static ListaDeNomeDaDescricao ObterNomeDaDescricao()
+        public static List<NomeDaDescricao> ObterNomeDaDescricao()
         {
             try
             {
@@ -39,7 +39,7 @@ namespace GerenciarDados.AcessarDados
             }
         }
 
-        public static ListaDeNomeDaDescricao ObterNomeDaDescricaoPorId(int id)
+        public static List<NomeDaDescricao> ObterNomeDaDescricaoPorId(int id)
         {
             try
             {

@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AcessarDadosDoBanco.Entities
 {
@@ -14,15 +13,5 @@ namespace AcessarDadosDoBanco.Entities
 
         [Required, StringLength(maximumLength: 100000)]
         public string Descricao { get; set; }
-
-        public InformacaoPessoal() { }
-
-        public InformacaoPessoal(InformacaoPessoal informacaoPessoal)
-        {
-            Id = informacaoPessoal.Id;
-            Titulo = informacaoPessoal.Titulo;
-            Descricao = informacaoPessoal.Descricao;
-        }
     }
-    public class ListaDeInformacaoPessoal : ObservableCollection<InformacaoPessoal> { }
 }

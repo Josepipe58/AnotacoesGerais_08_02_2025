@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"  xml:lang="pt-BR" Title="Alterar Anotações Gerais " Height="900" 
-        Width="1400" WindowStartupLocation="CenterScreen">
+        Width="1400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Grid>
         <!--| Título |-->
@@ -58,12 +58,12 @@
         Click="BtnSair_Click"/>
 
         <!--| Comboboxes -->
-        <ComboBox x:Name="CbxCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="315" SelectedIndex="-1" Margin="28,72,0,0"
-                  DisplayMemberPath="NomeDaCategoria" SelectionChanged="CbxCategoria_SelectionChanged"/>
+        <ComboBox x:Name="CbxCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="315" Margin="28,72,0,0"
+                  SelectionChanged="CbxCategoria_SelectionChanged"/>
 
-        <ComboBox x:Name="CbxSubCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="315" SelectedIndex="-1" Margin="30,187,0,0"
-                  DisplayMemberPath="NomeDaCategoria" SelectionChanged="CbxSubCategoria_SelectionChanged"/>
+        <ComboBox x:Name="CbxSubCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="315" Margin="30,187,0,0"
+                  SelectionChanged="CbxSubCategoria_SelectionChanged"/>
 
-        <ComboBox x:Name="CbxNomeDaDescricao" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="315" SelectedIndex="-1" Margin="32,307,0,0"/>
+        <ComboBox x:Name="CbxNomeDaDescricao" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="315" Margin="32,307,0,0"/>
     </Grid>
 </Window>

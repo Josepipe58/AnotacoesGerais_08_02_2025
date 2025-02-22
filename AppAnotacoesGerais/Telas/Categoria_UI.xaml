@@ -1,17 +1,12 @@
-﻿<UserControl x:Class="AppAnotacoesGerais.Telas.GerenciarCategorias.Categoria_UI"
+﻿<UserControl x:Class="AppAnotacoesGerais.Telas.Categoria_UI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vmc="clr-namespace:AppAnotacoesGerais.ViewModels.CategoriasVM" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"              
              mc:Ignorable="d" xml:lang="pt-BR" d:DesignHeight="800" d:DesignWidth="1200">
-
-    <UserControl.Resources>
-        <vmc:CategoriaViewModel x:Key="vmcCategoriaViewModel"/>
-    </UserControl.Resources>
-
+    
     <!--| Grid Principal |-->
-    <Grid Background="#FF1C0BE4" DataContext="{StaticResource vmcCategoriaViewModel}">
+    <Grid Background="#FF1C0BE4">
         <Grid.RowDefinitions>
             <RowDefinition Height="313"/>
             <RowDefinition/>
@@ -60,26 +55,24 @@
                                    Margin="745,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                             <!--| TextBoxes) |-->
-                            <TextBox x:Name="TxtId" Width="85" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="185,40,0,0" 
-                                     Text="{Binding CategoriaModel.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                            <TextBox x:Name="TxtId" Width="85" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="185,40,0,0" IsReadOnly="True"/>
 
-                            <TextBox x:Name="TxtCategoria" Width="270" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="465,40,0,0" 
-                                     Text="{Binding CategoriaModel.NomeDaCategoria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox x:Name="TxtCategoria" Width="270" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="465,40,0,0"/>
                         </Grid>
                     </Border>
 
                     <!--| Botões) |-->
                     <Button x:Name="BtnCadastrar" Content="Cadastrar" FontSize="16" Width="140" Style="{DynamicResource BtnAzulEscuroEAzulClaro}"  
-                            Margin="30,195,0,0" Command="{Binding ComandoDeCadastrarCategoria}"/>
+                            Margin="30,195,0,0" Click="BtnCadastrar_Click"/>
 
                     <Button x:Name="BtnAlterar" Content="Alterar" FontSize="16" Width="140" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" 
-                            Margin="200,195,0,0" Command="{Binding ComandoDeDeAlterarCategoria}"/>
+                            Margin="200,195,0,0" Click="BtnAlterar_Click"/>
 
                     <Button x:Name="BtnExcluir" Content="Excluir" FontSize="16" Width="140" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" 
-                            Margin="370,195,0,0" Command="{Binding ComandoDeDeExcluirCategoria}"/>
+                            Margin="370,195,0,0" Click="BtnExcluir_Click"/>
 
                     <Button x:Name="BtnAtualizar" Content="Atualizar" FontSize="16" Width="140" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" 
-                            Margin="540,195,0,0" Command="{Binding ComandoDeDeAtualizarCategoria}"/>
+                            Margin="540,195,0,0" Click="BtnAtualizar_Click"/>
                 </Grid>
             </Border>
         </Grid>
@@ -87,7 +80,6 @@
         <!--| DataGrid de DtgDados |-->
         <DataGrid x:Name="DtgDados" Style="{DynamicResource DtgDadosCorDaLinhaBisqueWhite}" Margin="5,0,5,5" 
                   ColumnHeaderStyle="{DynamicResource DtgCabecalhoAmarelo}" IsReadOnly="True" Grid.Column="0" Grid.Row="1"
-                  ItemsSource="{Binding ListaDeCategorias, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   MouseDoubleClick="DtgDados_MouseDoubleClick">
 
             <DataGrid.Columns>               

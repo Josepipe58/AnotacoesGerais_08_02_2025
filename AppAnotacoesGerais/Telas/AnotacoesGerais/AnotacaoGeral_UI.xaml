@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
-             mc:Ignorable="d" xml:lang="pt-BR" d:DesignHeight="800" Width="1490">
+             mc:Ignorable="d" xml:lang="pt-BR" d:DesignHeight="900" Width="1490">
     
     <!--| Grid Principal |-->
     <Grid Background="#FF0A18E4" Margin="-10,0,-10,0">
@@ -25,7 +25,7 @@
 
             <!--| TextBoxes |-->
             <TextBox x:Name="TxtConsultar" Width="60" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="989,83,0,0"
-                     Text="{Binding AnotacaoGeralModel.Id, UpdateSourceTrigger=PropertyChanged}" Height="35" Padding="20 0 0 0"/>
+                     Text="{Binding AnotacaoGeralModel.Id, UpdateSourceTrigger=PropertyChanged}" Height="35" Padding="20 0 0 0" Cursor=""/>
 
             <TextBox x:Name="TxtQtdeRegistros" Width="60" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="1290,83,0,0" 
                      IsReadOnly="True" Height="35" Foreground="#FF0617C7" Padding="20 0 0 0"/>
@@ -41,9 +41,7 @@
 
             <Button x:Name="BtnExcluir" Content="Excluir" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="470,80,0,0" 
                     Width="150" Grid.Row="1" Height="50" Click="BtnExcluir_Click" />
-            <!--Command="{Binding ComandoDeDeConsultarAnotacaoGeral}"-->
-
-
+            
             <Button x:Name="BtnAtualizar" Content="Atualizar" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="640,80,0,0" 
                    Click="BtnAtualizar_Click" Width="150" Grid.Row="1" Height="50" />
         </Grid>
@@ -59,8 +57,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <!--| Data Grid de Dados |-->
-                <DataGrid x:Name="DtgDados" Style="{DynamicResource DtgEditorDeTextoInternoDaGridInferior}" Margin="5,5,5,5" 
-                          ItemsSource="{Binding ListaDeAnotacoesGerais}" BorderBrush="#FF0C1889" BorderThickness="5">
+                <DataGrid x:Name="DtgDados" Style="{DynamicResource DtgEditorDeTextoInternoDaGridInferior}" Margin="5,5,5,5" BorderBrush="#FF0C1889" BorderThickness="5">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Código" Binding="{Binding Id, StringFormat=\{0:D4\}}" HeaderStyle="{DynamicResource CabecalhoEstilo}" Width="100"/>
                         <DataGridTextColumn Header="Categoria" Binding="{Binding NomeDaCategoria}" HeaderStyle="{DynamicResource CabecalhoEstilo}" Width="320"/>

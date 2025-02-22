@@ -8,7 +8,7 @@ namespace GerenciarDados.AcessarDados
     public class AnotacaoGeral_AD(bool Save = true) : Repositorio<AnotacaoGeral>(Save)
     {
 
-        public static ListaDeAnotacoesGerais ObterAnotacoesGerais()
+        public static List<AnotacaoGeral> ObterAnotacoesGerais()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace GerenciarDados.AcessarDados
             }
         }
 
-        public static ListaDeAnotacoesGerais ConsultarPorCategoria(string categoria)
+        public static List<AnotacaoGeral> ConsultarPorCategoria(string categoria)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace GerenciarDados.AcessarDados
             }
         }
 
-        public static ListaDeAnotacoesGerais ObterAnotacoesGeraisPorId(int id)
+        public static List<AnotacaoGeral> ObterAnotacoesGeraisPorId(int id)
         {
             try
             {

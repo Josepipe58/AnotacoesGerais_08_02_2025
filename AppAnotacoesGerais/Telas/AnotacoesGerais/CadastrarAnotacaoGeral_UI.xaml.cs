@@ -1,5 +1,4 @@
 ﻿using AcessarDadosDoBanco.Entities;
-using AppAnotacoesGerais.Models;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
 using System.Windows;
@@ -9,7 +8,6 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
 {
     public partial class CadastrarAnotacaoGeral_UI : UserControl
     {
-        public AnotacaoGeralModel AnotacaoGeralModel { get; set; }
         public AnotacaoGeral AnotacaoGeral { get; set; }
         public string _nomeDoMetodo = string.Empty;
 
@@ -26,15 +24,15 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             {
                 DtpData.Text = Convert.ToString(DateTime.Today);
             }
-            AnotacaoGeralModel = new AnotacaoGeralModel();
+            AnotacaoGeral = new AnotacaoGeral();
             AnotacaoGeral = new AnotacaoGeral();
             ComboBoxCategoria();
             ContadorDeRegistros();
         }
 
-        public CadastrarAnotacaoGeral_UI(AnotacaoGeralModel anotacaoGeralModel) : this()
+        public CadastrarAnotacaoGeral_UI(AnotacaoGeral anotacaoGeralModel) : this()
         {
-            AnotacaoGeralModel = anotacaoGeralModel;
+            AnotacaoGeral = anotacaoGeralModel;
         }
 
         private void ComboBoxCategoria()
@@ -59,6 +57,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
 
         private void CbxCategoria_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            SubCategoria_AD subCategoria_AD = new();
             CbxSubCategoria.ItemsSource = SubCategoria_AD.ObterSubCategoriasPorId(Convert.ToInt32(CbxCategoria.SelectedValue));
             CbxSubCategoria.DisplayMemberPath = "NomeDaSubCategoria";
             CbxSubCategoria.SelectedValuePath = "Id";
@@ -192,9 +191,9 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                         GerenciarMensagens.MensagemDeErroDeObterId(AnotacaoGeral.Id, _nomeDoMetodo);
                     }
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    _ = MessageBox.Show($"Erro ao conectar-se com o Banco de Dados.\nDetalhes do erro: {erro.Message}");
+                    _ = MessageBox.Show($"Erro ao conectar-se com o Banco de Dados.\nDetalhes do ex: {ex.Message}");
                     return;
                 }
             }
@@ -225,7 +224,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             CbxSubCategoria.Text = "";
             CbxSubCategoria.SelectedIndex = 0;
             CbxNomeDaDescricao.Text = "";
-            CbxNomeDaDescricao.SelectedIndex = 0;            
+            CbxNomeDaDescricao.SelectedIndex = 0;
             DtpData.Text = Convert.ToString(DateTime.Today);
             LimparDados();
         }
@@ -234,7 +233,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
         public void LimparDados()
         {
             TxtId.Text = "";
-            TxtDescricao.Text = "";           
+            TxtDescricao.Text = "";
         }
     }
 }

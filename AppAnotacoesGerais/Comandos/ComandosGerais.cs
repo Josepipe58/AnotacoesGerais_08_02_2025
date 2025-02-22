@@ -1,8 +1,5 @@
 ﻿using AppAnotacoesGerais.Telas.AnotacoesGerais;
-using AppAnotacoesGerais.Telas.GerenciarCategorias;
-using AppAnotacoesGerais.Telas.GerenciarConsumoDeGas;
-using AppAnotacoesGerais.Telas.GerenciarNomeDaDescricao;
-using AppAnotacoesGerais.Telas.GerenciarSubCategorias;
+using AppAnotacoesGerais.Telas;
 using AppAnotacoesGerais.Views.Menus;
 using System.Windows.Input;
 

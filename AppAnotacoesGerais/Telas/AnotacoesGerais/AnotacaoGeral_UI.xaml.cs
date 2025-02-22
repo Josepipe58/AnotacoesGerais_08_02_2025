@@ -1,5 +1,4 @@
 ﻿using AcessarDadosDoBanco.Entities;
-using AppAnotacoesGerais.Models;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
 using System.Windows;
@@ -9,12 +8,13 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
 {
     public partial class AnotacaoGeral_UI : UserControl
     {
-        public AnotacaoGeralModel AnotacaoGeralModel { get; set; }
+        public AnotacaoGeral AnotacaoGeral { get; set; }
         public string _nomeDoMetodo = string.Empty;
+
         public AnotacaoGeral_UI()
         {
             InitializeComponent();
-            AnotacaoGeralModel = new AnotacaoGeralModel();
+            AnotacaoGeral = new AnotacaoGeral();
             CarregarDataGrid();
         }
 
@@ -45,20 +45,20 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
 
         private void BtnAlterar_Click(object sender, RoutedEventArgs e)
         {
-            AlterarAnotacaoGeral_UI alterarAG = new(AnotacaoGeralModel);
+            AlterarAnotacaoGeral_UI alterarAG = new(AnotacaoGeral);
             try
             {
                 if (TxtConsultar.Text != "")
-                    AnotacaoGeralModel.Id = Convert.ToInt32(TxtConsultar.Text);
+                    AnotacaoGeral.Id = Convert.ToInt32(TxtConsultar.Text);
 
                 AnotacaoGeral_AD anotacaoGeral_AD = new();
                 AnotacaoGeral anotacaoGeral = new();
-                bool retorno = anotacaoGeral_AD.VerificarRegistros(AnotacaoGeralModel.Id);
+                bool retorno = anotacaoGeral_AD.VerificarRegistros(AnotacaoGeral.Id);
                 if (retorno)
                 {
-                    anotacaoGeral.Id = AnotacaoGeralModel.Id;
+                    anotacaoGeral.Id = AnotacaoGeral.Id;
                     var linha = AnotacaoGeral_AD.ObterAnotacoesGeraisPorId(anotacaoGeral.Id);
-                    if (AnotacaoGeralModel.Id >= 0)
+                    if (AnotacaoGeral.Id >= 0)
                     {
                         if (linha.Count >= 0)
                         {
@@ -78,12 +78,12 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                 else
                 {
                     _nomeDoMetodo = "ConsultarAnotacaoGeral";
-                    GerenciarMensagens.MensagemDeErroDeObterId(AnotacaoGeralModel.Id, _nomeDoMetodo);
+                    GerenciarMensagens.MensagemDeErroDeObterId(AnotacaoGeral.Id, _nomeDoMetodo);
                 }
             }
-            catch (Exception erro)
+            catch (Exception ex)
             {
-                _ = MessageBox.Show($"Erro ao conectar-se com o Banco de Dados.\nDetalhes do erro: {erro.Message}");
+                _ = MessageBox.Show($"Erro ao conectar-se com o Banco de Dados.\nDetalhes do ex: {ex.Message}");
                 return;
             }
         }
@@ -113,10 +113,10 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                     TxtConsultar.Text = "0";
                     return;
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
                     _nomeDoMetodo = "Excluir";
-                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(erro, _nomeDoMetodo);
+                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
                     return;
                 }
             }

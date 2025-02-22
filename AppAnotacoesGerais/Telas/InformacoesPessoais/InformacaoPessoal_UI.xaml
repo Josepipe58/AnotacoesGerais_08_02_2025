@@ -3,9 +3,74 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             mc:Ignorable="d" xml:lang="pt-BR" d:DesignHeight="900" Width="1490">
+
+    <Grid Background="#FF1AF3D6">
+
+        <!--| Rótulos(Label) Parte Superior |-->
+
+        <Label Content="TÍTULO" Style="{DynamicResource LabelVerde}"  FontSize="18" Height="40" Width="270" Padding="110,5,10,10" Margin="325,10,0,0" />
+
+        <Label Content="DESCRIÇÃO" Style="{DynamicResource LabelVerde}" FontSize="18" Height="40" Width="880" Padding="480,5,10,10" Margin="599,10,0,0"/>
+
+        <!--| TextBoxes |-->
+        <TextBox x:Name="TxtTitulo" Style="{DynamicResource TxtBrancoEBordaAzul}" FontSize="20" Height="170" Width="270" Margin="325,49,0,0" AcceptsTab="True"   
+          TextWrapping="Wrap" AcceptsReturn="True"/>
+
+        <TextBox x:Name="TxtDescricao" Style="{DynamicResource TxtBrancoEBordaAzul}" FontSize="20" Height="170" Width="880" Margin="599,49,0,0" AcceptsTab="True"
+         TextWrapping="Wrap" AcceptsReturn="True"/>
+
+        <!--| Menu Lateral |-->
+        <Canvas HorizontalAlignment="Left" Margin="0,10" Width="320" Background="#FF041907">
+
+            <!--| Rótulos(Label) Menu Lateral |-->
+            <Label Content="Consultar Por Título" Style="{DynamicResource LabelTransparente}" Padding="40,5,10,10" Canvas.Left="45" Canvas.Top="138"/>
+
+            <Label Content="Código" Style="{DynamicResource LabelTransparente}" Padding="10,5,10,10" Canvas.Left="85" Canvas.Top="300" />
+
+            <!--| TextBoxes |-->
+            <TextBox x:Name="TxtConsultar" Style="{DynamicResource TxtBrancoEBordaAzul}" FontSize="20" Width="240" Canvas.Left="45" Canvas.Top="173"
+                     KeyDown="TxtConsultar_KeyDown"/>
             
+            <TextBox x:Name="TxtId" Style="{DynamicResource TxtAzulClaroEBordaAzul}" FontSize="20" Padding="10 0 0 0" Width="80" Canvas.Left="95" Canvas.Top="330"/>            
+
+            <!--| Botões |-->
+            <Button x:Name="BtnConsultarInfoPes" Content="Consultar Informações Pessoais" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" FontSize="14" 
+                    FontStyle="Italic" Height="55" Width="260" Canvas.Left="40" Canvas.Top="50"/>
+            
+            <Button x:Name="BtnConsultar" Content="Consultar" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Canvas.Left="80" Canvas.Top="230" 
+                    Click="BtnConsultar_Click"/>
+
+            <Button x:Name="BtnCadastrar" Content="CADASTRAR" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Height="50" Width="160" Canvas.Left="80" 
+                    Canvas.Top="390" Click="BtnCadastrar_Click"/>
+
+            <Button x:Name="BtnAlterar" Content="ALTERAR" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Canvas.Left="80" Canvas.Top="470" 
+                    Click="BtnAlterar_Click"/>
+
+            <Button x:Name="BtnExcluir" Content="EXCLUIR" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Canvas.Left="80" Canvas.Top="550" 
+                    Click="BtnExcluir_Click"/>
+
+            <Button x:Name="BtnAtualizar" Content="ATUALIZAR" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Canvas.Left="80" Canvas.Top="630" 
+                    Click="BtnAtualizar_Click" />
+        </Canvas>
+
+        <!--| Borda do Data Grid de Dados |-->
+        <Border x:Name="Borda03" BorderBrush="Navy" CornerRadius="25,25,25,25" BorderThickness="2,4,3,9" Margin="325,222,10,10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="LightCyan" Offset="0.0" />
+                    <GradientStop Color="LightBlue" Offset="0.5" />
+                    <GradientStop Color="DarkTurquoise" Offset="1.0" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <!--| Data Grid de Dados |-->
+            <DataGrid x:Name="DtgDados" Style="{DynamicResource DtgEditorDeTextoInternoDaGridInferior}" Margin="8,6,7,15" IsReadOnly="True"
+              MouseDoubleClick="DtgDados_MouseDoubleClick"  BorderBrush="#FF0C1889" BorderThickness="3">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="TÍTULO" Binding="{Binding Titulo}" Width="1543" HeaderStyle="{StaticResource DtgCabecalhoVerdeEscuro}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
     </Grid>
 </UserControl>

@@ -1,17 +1,12 @@
-﻿<UserControl x:Class="AppAnotacoesGerais.Telas.GerenciarSubCategorias.SubCategoria_UI"
+﻿<UserControl x:Class="AppAnotacoesGerais.Telas.SubCategoria_UI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vmsc="clr-namespace:AppAnotacoesGerais.ViewModels.SubCategoriasVM"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
              mc:Ignorable="d" xml:lang="pt-BR" d:DesignHeight="800" d:DesignWidth="1300">
-
-    <UserControl.Resources>
-        <vmsc:SubCategoriaViewModel x:Key="vmscSubCategoriaViewModel"/>
-    </UserControl.Resources>
-
+    
     <!--| Grid Principal |-->
-    <Grid Background="#FF1C0BE4" Margin="0,0,0,0" DataContext="{StaticResource vmscSubCategoriaViewModel}">
+    <Grid Background="#FF1C0BE4" Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="347"/>
             <RowDefinition/>
@@ -63,22 +58,17 @@
 
                             <!--| TextBoxes) |-->
                             <TextBox x:Name="TxtIdCategoria" FontSize="16" Height="30" Width="85" Style="{DynamicResource TxtBrancoEBordaAzul}"
-                                     Text="{Binding SubCategoriaModel.CategoriaModel.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="195,40,0,0" 
-                                     IsReadOnly="True"/>
+                                     Margin="195,40,0,0" IsReadOnly="True"/>
 
                             <TextBox x:Name="TxtIdSubCategoria" FontSize="16" Height="30" Width="85" Style="{DynamicResource TxtBrancoEBordaAzul}"
-                                      Text="{Binding SubCategoriaModel.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="195,100,0,0" 
-                                     IsReadOnly="True"/>
+                                     Margin="195,100,0,0" IsReadOnly="True"/>
 
                             <TextBox x:Name="TxtSubCategoria" FontSize="16" Height="30" Width="300" Style="{DynamicResource TxtBrancoEBordaAzul}"
-                                     Text="{Binding SubCategoriaModel.NomeDaSubCategoria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                     
                                      Margin="485,100,0,0"/>
 
                             <!--| ComboBox de Categorias |-->
 
-                            <ComboBox Name="CbxCategoria" Height="40" Width="310" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="475,35,0,0"
-                                      Text="{Binding SubCategoriaModel.CategoriaModel.NomeDaCategoria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      DisplayMemberPath="NomeDaCategoria" SelectedIndex="0" SelectedValue="{Binding SubCategoriaModel.CategoriaId}"/>
+                            <ComboBox Name="CbxCategoria" Height="40" Width="310" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="475,35,0,0"/>
 
                             <!--| Pesquisar SubCategorias|-->
                             <Grid Margin="800,70,0,0" Height="80" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -97,24 +87,23 @@
                     </Border>
 
                     <!--| Botões) |-->
-                    <Button x:Name="BtnCadastrar" Content="Cadastrar" FontSize="16" Width="140" Style="{StaticResource BtnAzulEscuroEAzulClaro}"                            
-                            Command="{Binding ComandoDeCadastrarSubCategoria}" Margin="30,240,0,0"/>
+                    <Button x:Name="BtnCadastrar" Content="Cadastrar" FontSize="16" Width="140" Style="{StaticResource BtnAzulEscuroEAzulClaro}" 
+                            Click="BtnCadastrar_Click" Margin="30,240,0,0"/>
 
                     <Button x:Name="BtnAlterar" Content="Alterar" FontSize="16" Width="140" Style="{DynamicResource BtnAzulEscuroEAzulClaro}"
-                            Command="{Binding ComandoDeDeAlterarSubCategoria}" Margin="200,240,0,0"/>
+                            Click="BtnAlterar_Click" Margin="200,240,0,0"/>
 
                     <Button x:Name="BtnExcluir" Content="Excluir" FontSize="16" Width="140" Style="{DynamicResource BtnAzulEscuroEAzulClaro}"
-                            Command="{Binding ComandoDeDeExcluirSubCategoria}" Margin="370,240,0,0"/>
+                            Click="BtnExcluir_Click" Margin="370,240,0,0"/>
 
                     <Button x:Name="BtnAtualizar" Content="Atualizar" FontSize="16" Width="140" Style="{DynamicResource BtnAzulEscuroEAzulClaro}"
-                            Command="{Binding ComandoDeDeAtualizarSubCategoria}" Margin="540,240,0,0" Click="BtnAtualizar_Click"/>
+                            Margin="540,240,0,0" Click="BtnAtualizar_Click"/>
                 </Grid>
             </Border>
         </Grid>
         <!--| DataGrid de DtgDados |-->
         <DataGrid x:Name="DtgDados" Style="{DynamicResource DtgDadosCorDaLinhaBisqueWhite}" Margin="5,0,5,5"                  
                   ColumnHeaderStyle="{DynamicResource DtgCabecalhoAmarelo}" IsReadOnly="True" Grid.Row="1"
-                  ItemsSource="{Binding ListaDeSubCategorias, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   MouseDoubleClick="DtgDados_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Código" Binding="{Binding CategoriaId, StringFormat=\{0:D4\}}" Width="100"/>

@@ -1,5 +1,4 @@
 ﻿using AcessarDadosDoBanco.Entities;
-using AppAnotacoesGerais.Models;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
 using System.Windows;
@@ -9,16 +8,16 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
 {
     public partial class AlterarAnotacaoGeral_UI : Window
     {
-        public AnotacaoGeralModel AnotacaoGeralModel { get; set; }
+        public AnotacaoGeral AnotacaoGeral { get; set; }
         public string _nomeDoMetodo = string.Empty;
         public AlterarAnotacaoGeral_UI()
         {
             InitializeComponent();
-            ComboBoxCategoria();          
+            ComboBoxCategoria();
         }
-        public AlterarAnotacaoGeral_UI(AnotacaoGeralModel anotacaoGeralModel) : this()
+        public AlterarAnotacaoGeral_UI(AnotacaoGeral anotacaoGeral) : this()
         {
-            AnotacaoGeralModel = anotacaoGeralModel;
+            AnotacaoGeral = anotacaoGeral;
         }
 
         private void ComboBoxCategoria()
@@ -79,10 +78,10 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                     Close();
                     //LimparDados();
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
                     _nomeDoMetodo = "Alterar";
-                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(erro, _nomeDoMetodo);
+                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
                     return;
                 }
             }

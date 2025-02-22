@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AcessarDadosDoBanco.Entities
 {
@@ -10,13 +9,5 @@ namespace AcessarDadosDoBanco.Entities
 
         [Required, StringLength(80)]
         public string NomeDaCategoria { get; set; }
-
-        public Categoria() { }
-        public Categoria(Categoria categoria)
-        {
-            Id = categoria.Id;
-            NomeDaCategoria = categoria.NomeDaCategoria;
-        }
     }
-    public class ListaDeCategorias : ObservableCollection<Categoria> { }
 }

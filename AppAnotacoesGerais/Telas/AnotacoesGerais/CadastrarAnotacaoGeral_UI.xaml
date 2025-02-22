@@ -71,15 +71,12 @@
                 Click="BtnAtualizar_Click"/>
 
         <!--| Comboboxes -->
-        <ComboBox x:Name="CbxCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="330" SelectedIndex="-1" Margin="42,68,0,0"
-   Text="{Binding AnotacaoGeralModel.NomeDaCategoria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="NomeDaCategoria"
-   SelectionChanged="CbxCategoria_SelectionChanged"/>
+        <ComboBox x:Name="CbxCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="330" Margin="42,68,0,0"
+                  SelectionChanged="CbxCategoria_SelectionChanged"/>
 
-        <ComboBox x:Name="CbxSubCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="380" SelectedIndex="-1" Margin="44,180,0,0"
-   Text="{Binding AnotacaoGeralModel.NomeDaSubCategoria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="NomeDaCategoria"
-   SelectionChanged="CbxSubCategoria_SelectionChanged"/>
+        <ComboBox x:Name="CbxSubCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="380" Margin="44,180,0,0"
+                  SelectionChanged="CbxSubCategoria_SelectionChanged"/>
 
-        <ComboBox x:Name="CbxNomeDaDescricao" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="450" SelectedIndex="-1" Margin="46,292,0,0"
-   Text="{Binding AnotacaoGeralModel.NomeDaDescricao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox x:Name="CbxNomeDaDescricao" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="450" Margin="46,292,0,0"/>
     </Grid>
 </UserControl>

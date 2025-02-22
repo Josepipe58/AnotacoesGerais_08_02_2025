@@ -6,7 +6,7 @@ namespace GerenciarDados.AcessarDados
 {
     public class InformacaoPessoal_AD(bool Save = true) : Repositorio<InformacaoPessoal>(Save)
     {
-        public static ListaDeInformacaoPessoal ObterInformacaoPessoal()
+        public static List<InformacaoPessoal> ObterInformacaoPessoal()
         {
             try
             {

@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AcessarDadosDoBanco.Entities
@@ -19,16 +18,6 @@ namespace AcessarDadosDoBanco.Entities
         [NotMapped]
         public string NomeDaCategoria { get; set; }
 
-        public SubCategoria() { }
-
-        public SubCategoria(SubCategoria subCategoria)
-        {            
-            Id = subCategoria.Id;
-            NomeDaSubCategoria = subCategoria.NomeDaSubCategoria;
-            CategoriaId = subCategoria.CategoriaId;
-            NomeDaCategoria = subCategoria.NomeDaCategoria;          
-        }
         public virtual Categoria Categoria { get; set; }
     }
-    public class ListaDeSubCategorias : ObservableCollection<SubCategoria> { }
 }
