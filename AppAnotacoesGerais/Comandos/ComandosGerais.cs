@@ -1,6 +1,8 @@
-﻿using AppAnotacoesGerais.Telas.AnotacoesGerais;
-using AppAnotacoesGerais.Telas;
+﻿using AppAnotacoesGerais.Telas;
+using AppAnotacoesGerais.Telas.AnotacoesGerais;
+using AppAnotacoesGerais.Telas.InformacoesPessoais;
 using AppAnotacoesGerais.Views.Menus;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AppAnotacoesGerais.Comandos
@@ -121,6 +123,90 @@ namespace AppAnotacoesGerais.Comandos
 
         #endregion
 
+        #region | Comandos de Informações Pessoais |
+
+        private string _senha = null;
+        public string Senha 
+        { 
+            get => _senha;
+            set 
+            {
+                _senha = value;
+                OnPropertyChanged(nameof(Senha));
+            } 
+        }
+
+        public void FazerLoginInformacaoPessoal()
+        {
+            if (Senha == "bj250281")
+            {
+                SelecionarControleDeUsuario = new InformacaoPessoal_UI();
+                Senha = null;
+            }
+            else if (Senha == null)
+            {
+                MessageBox.Show($"Digite sua senha para logar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Senha = null;
+            }
+            else if (Senha != "bj250281")
+            {
+                MessageBox.Show($"Senha inválida, tente novamente.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                Senha = null;
+            }
+        }
+
+        private ICommand _comandoFazerLoginInformacaoPessoal;
+        public ICommand ComandoFazerLoginInformacaoPessoal
+        {
+            get
+            {
+                if (_comandoFazerLoginInformacaoPessoal == null)
+                {
+                    _comandoFazerLoginInformacaoPessoal = new RelayCommand(param => FazerLoginInformacaoPessoal());
+                }
+                return _comandoFazerLoginInformacaoPessoal;
+            }
+        }
+
+        public void AbrirJanelaDeCadastrarInformacaoPessoal()
+        {
+            SelecionarControleDeUsuario = new CadastrarInformacaoPessoal_UI();
+        }
+
+        private ICommand _comandoAbrirJanelaDeCadastrarInformacaoPessoal;
+        public ICommand ComandoAbrirJanelaDeCadastrarInformacaoPessoal
+        {
+            get
+            {
+                if (_comandoAbrirJanelaDeCadastrarInformacaoPessoal == null)
+                {
+                    _comandoAbrirJanelaDeCadastrarInformacaoPessoal = 
+                        new RelayCommand(param => AbrirJanelaDeCadastrarInformacaoPessoal());
+                }
+                return _comandoAbrirJanelaDeCadastrarInformacaoPessoal;
+            }
+        }
+
+        public void VoltarParaInformacaoPessoal()
+        {
+            SelecionarControleDeUsuario = new InformacaoPessoal_UI();
+        }
+
+        private ICommand _comandoVoltarParaInformacaoPessoal;
+        public ICommand ComandoVoltarParaInformacaoPessoal
+        {
+            get
+            {
+                if (_comandoVoltarParaInformacaoPessoal == null)
+                {
+                    _comandoVoltarParaInformacaoPessoal = new RelayCommand(param => VoltarParaInformacaoPessoal());
+                }
+                return _comandoVoltarParaInformacaoPessoal;
+            }
+        }
+
+        #endregion
+
         #region | Comandos de Consuumo de Gás |
 
         public void ConsumoDeGasComando()
@@ -140,7 +226,6 @@ namespace AppAnotacoesGerais.Comandos
                 return _comandoDeConsumoDeGas;
             }
         }
-
         #endregion
-    }
+    }    
 }

@@ -1,4 +1,4 @@
-﻿using AcessarDadosDoBanco.Entities;
+﻿using AcessarDadosDoBanco.Modelos;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
 using System.Windows;
@@ -24,8 +24,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             {
                 DtpData.Text = Convert.ToString(DateTime.Today);
             }
-            AnotacaoGeral = new AnotacaoGeral();
-            AnotacaoGeral = new AnotacaoGeral();
+            AnotacaoGeral = new AnotacaoGeral();           
             ComboBoxCategoria();
             ContadorDeRegistros();
         }
@@ -161,9 +160,10 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
         {
             if (TxtConsultar.Text != "")
             {
-                AnotacaoGeral.Id = Convert.ToInt32(TxtConsultar.Text);
                 try
                 {
+                    AnotacaoGeral.Id = Convert.ToInt32(TxtConsultar.Text);
+
                     AnotacaoGeral_AD anotacaoGeral_AD = new();
                     bool retorno = anotacaoGeral_AD.VerificarRegistros(AnotacaoGeral.Id);
                     if (retorno)
@@ -193,7 +193,8 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                 }
                 catch (Exception ex)
                 {
-                    _ = MessageBox.Show($"Erro ao conectar-se com o Banco de Dados.\nDetalhes do ex: {ex.Message}");
+                    _nomeDoMetodo = "BtnConsultar_Click";
+                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
                     return;
                 }
             }

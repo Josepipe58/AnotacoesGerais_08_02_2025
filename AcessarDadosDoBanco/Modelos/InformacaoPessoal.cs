@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AcessarDadosDoBanco.Entities
+namespace AcessarDadosDoBanco.Modelos
 {
     public class InformacaoPessoal
     {

@@ -1,0 +1,41 @@
+﻿<Window x:Class="AppAnotacoesGerais.Telas.InformacoesPessoais.TelaDeLogin_UI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:AppAnotacoesGerais.Telas.InformacoesPessoais"
+        xmlns:comandos="clr-namespace:AppAnotacoesGerais.Comandos" 
+        d:DataContext="{d:DesignInstance Type=comandos:ComandosDaTelaPrincipal}"       
+        mc:Ignorable="d" Title="Tela de Login - Cadastrar Informações Pessoais" 
+        Height="430" Width="610" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    
+    <Grid Background="#FF06EEEE">
+
+        <!---| Rótulo Superior|-->
+        <Label Content="Digite a senha para abrir o formulário de Cadastro de Informações Pessoais" VerticalAlignment="Top" FontWeight="Bold" 
+               Foreground="#FF1D08E6" Padding="20,5,0,0" FontFamily="Arial" FontSize="13"/>
+
+        <Canvas Margin="15,25,15,15" Background="#FF0C14C9">
+
+            <!---| Rótulo(Label)|-->
+            <Label Content="Senha" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" FontWeight="Bold" Foreground="#FFEBEAF7" 
+                   Canvas.Left="203" Canvas.Top="30" Height="25"/>
+
+            <!---| Password Box|-->
+            <local:CaixaDeSenha x:Name="PbSenha" FontSize="20" 
+                                             FontWeight="Bold" Foreground="#FF220DEE" Height="25" Width="145" Canvas.Left="207" Canvas.Top="55"/>
+            <!---|Password="{Binding Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"|-->
+
+            <!---| Botões|-->
+            <Button x:Name="BtnCadastrar" Content="OK" Style="{DynamicResource BtnAzulEscuroEAzulClaro}"  
+                    Canvas.Left="200" Canvas.Top="95" Click="BtnCadastrar_Click"/>
+            <!---|Command="{Binding ComandoFazerLoginInformacaoPessoal}"|-->
+
+            <Button x:Name="BtnCancelar" Content="Cancelar" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Canvas.Left="200" Canvas.Top="165" 
+                    Click="BtnCancelar_Click" HorizontalAlignment="Center"  />
+
+            <Button x:Name="BtnSair" Content="Sair" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Height="50" Width="160" Canvas.Left="200" Canvas.Top="235"
+                    Click="BtnSair_Click"/>
+        </Canvas>
+    </Grid>
+</Window>

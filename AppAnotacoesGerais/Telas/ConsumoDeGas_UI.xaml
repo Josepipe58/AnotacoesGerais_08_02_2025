@@ -62,13 +62,13 @@
         <DatePicker x:Name="DtpDataDaCompra" Style="{DynamicResource CalendarioDatePicker}" Height="45" Width="200" Margin="568,160,0,0"/>
 
         <!--| Botões |-->
-        <Button x:Name="BtnCadastrar" Content="Cadastrar" Style="{DynamicResource BtnRetangularVerdeEscuro}" FontSize="16" Height="50" Width="150" 
+        <Button x:Name="BtnCadastrar" Content="Cadastrar" Style="{DynamicResource BtnRetangularVerdeEscuro}" Height="50" Width="150" 
                 Margin="25,220,0,0" Click="BtnCadastrar_Click"/>
 
-        <Button x:Name="BtnAlterar" Content="Alterar" Style="{DynamicResource BtnRetangularVerdeEscuro}" FontSize="16" Height="50" Width="150" 
+        <Button x:Name="BtnAlterar" Content="Alterar" Style="{DynamicResource BtnRetangularVerdeEscuro}" Height="50" Width="150" 
                 Margin="185,220,0,0" Click="BtnAlterar_Click"/>
 
-        <Button x:Name="BtnExcluir" Content="Excluir" Style="{DynamicResource BtnRetangularVerdeEscuro}" FontSize="16" Height="50" Width="150"
+        <Button x:Name="BtnExcluir" Content="Excluir" Style="{DynamicResource BtnRetangularVerdeEscuro}" Height="50" Width="150"
         Margin="360,220,0,0" Click="BtnExcluir_Click"/>
 
         <Button x:Name="BtnAtualizar" Content="Atualizar" Style="{DynamicResource BtnRetangularVerdeEscuro}" FontSize="16" Height="50" Width="150"
@@ -99,7 +99,7 @@
                 <DataGridTextColumn Header="Empresa de Gás" Binding="{Binding Fornecedor}" 
                                     HeaderStyle="{DynamicResource DtgCabecalhoVerdeEscuro}" Width="250"/>
                 
-                <DataGridTextColumn Header="" HeaderStyle="{DynamicResource DtgCabecalhoVerdeEscuro}" Width="500"/>
+                <DataGridTextColumn Header="" HeaderStyle="{DynamicResource DtgCabecalhoVerdeEscuro}" Width="547"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

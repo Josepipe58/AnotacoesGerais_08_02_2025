@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AcessarDadosDoBanco.Entities
+namespace AcessarDadosDoBanco.Modelos
 {
     public class SubCategoria
     {
@@ -14,7 +14,6 @@ namespace AcessarDadosDoBanco.Entities
         [ForeignKey(nameof(CategoriaId))]
         public int CategoriaId { get; set; }
 
-        //Essas propriedades são usadas como objeto de transferência ou variáveis.  
         [NotMapped]
         public string NomeDaCategoria { get; set; }
 

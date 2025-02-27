@@ -1,4 +1,4 @@
-﻿using AcessarDadosDoBanco.Entities;
+﻿using AcessarDadosDoBanco.Modelos;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
 using System.Windows;

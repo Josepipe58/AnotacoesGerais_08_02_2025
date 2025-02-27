@@ -1,14 +1,14 @@
-﻿using AcessarDadosDoBanco.Entities;
+﻿using AcessarDadosDoBanco.Modelos;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
 
-namespace AcessarDadosDoBanco.Context
-{
-    public class AppDbContexto : DbContext
+namespace AcessarDadosDoBanco.ContextoDeDados
+{ 
+    public class Contexto : DbContext
     {
-        public AppDbContexto() { }
+        public Contexto() { }
 
-        public AppDbContexto(DbContextOptions<AppDbContexto> options) : base(options) { }
+        public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
         public virtual DbSet<AnotacaoGeral> TAnotacaoGeral { get; set; }
         public virtual DbSet<Categoria> TCategoria { get; set; }
@@ -20,8 +20,8 @@ namespace AcessarDadosDoBanco.Context
         {
             try
             {
-                optionsBuilder.UseSqlServer(" Data Source = JOSEPIPE-PC\\FINANCEIRO; Initial Catalog = FINANCEIRO; " +
-                    "Integrated Security = True; TrustServerCertificate=True");//AnotacoesGerais
+                optionsBuilder.UseSqlServer(" Data Source = JOSEPIPE-PC\\FINANCEIRO; Initial Catalog = AnotacoesGerais; " +
+                    "Integrated Security = True; TrustServerCertificate=True");
             }
             catch (Exception ex)
             {

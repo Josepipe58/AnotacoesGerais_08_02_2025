@@ -1,4 +1,4 @@
-﻿using AcessarDadosDoBanco.Entities;
+﻿using AcessarDadosDoBanco.Modelos;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
 using System.Windows;
@@ -16,7 +16,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             InitializeComponent();
             AnotacaoGeral = new AnotacaoGeral();
             CarregarDataGrid();
-        }
+        }      
 
         public void CarregarDataGrid()
         {
@@ -36,15 +36,11 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             TxtQtdeRegistros.Text = Convert.ToString(contador);
         }
 
-        private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
-        {
-            AnotacaoGeral_AD anotacaoGeral_AD = new();
-            DtgDados.ItemsSource = anotacaoGeral_AD.SelecionarTodos().OrderByDescending(an => an.Id);
-            TxtConsultar.Text = "0";
-        }
+        
 
         private void BtnAlterar_Click(object sender, RoutedEventArgs e)
         {
+
             AlterarAnotacaoGeral_UI alterarAG = new(AnotacaoGeral);
             try
             {
@@ -83,7 +79,8 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             }
             catch (Exception ex)
             {
-                _ = MessageBox.Show($"Erro ao conectar-se com o Banco de Dados.\nDetalhes do ex: {ex.Message}");
+                _nomeDoMetodo = "BtnAlterar_Click";
+                GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
                 return;
             }
         }
@@ -130,6 +127,13 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                 GerenciarMensagens.PreencherCampoVazio();
                 return;
             }
+        }
+
+        private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
+        {
+            AnotacaoGeral_AD anotacaoGeral_AD = new();
+            DtgDados.ItemsSource = anotacaoGeral_AD.SelecionarTodos().OrderByDescending(an => an.Id);
+            TxtConsultar.Text = "0";
         }
     }
 }

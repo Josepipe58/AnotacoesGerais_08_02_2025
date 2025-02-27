@@ -45,21 +45,21 @@ namespace GerenciarDados.Mensagens
 
         public static void PreencherCampoVazio()
         {
-            MessageBox.Show("Atenção! Existe um ou mais de um campo, que está vazio.\n Corrija esse ex para continuar.",
+            MessageBox.Show("Atenção! Existe um ou mais de um campo, que está vazio.\n Corrija esse erro para continuar.",
                 "Atenção!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         //Erros do Try Catch(Exception)
         public static string ErroDeExcecaoENomeDoMetodo(Exception ex, string _nomeDoMetodo)
         {
-            return MessageBox.Show($"Atenção! Ocorreu um ex no seguinte método: {_nomeDoMetodo}." +
+            return MessageBox.Show($"Atenção! Ocorreu um erro no seguinte método: {_nomeDoMetodo}." +
                     $"\nDetalhes: {ex.Message}", "Mensagem de Erro!", MessageBoxButton.OK, MessageBoxImage.Error).ToString();
         }
 
         //Mensagem de Erro de Switch Case
         public static void MensagemDeErroDeSwitchCase()
         {
-            MessageBox.Show($"Atenção! Ocorreu um ex no Switch Case.\nNão foi possível selecionar nenhum mês.",
+            MessageBox.Show($"Atenção! Ocorreu um erro no Switch Case.\nNão foi possível selecionar nenhum mês.",
                             "Mensagem de Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 

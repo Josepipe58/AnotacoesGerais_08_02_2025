@@ -18,7 +18,9 @@ namespace AppAnotacoesGerais.Comandos
     public partial class ComandosDaTelaPrincipal : RelayCommand
     {
         private static string _nomeDoMetodo = string.Empty;
+
         private CollectionViewSource MenuItemsDeConsultarDados { get; set; }
+
         public ICollectionView SourceConsultarDados => MenuItemsDeConsultarDados.View;
 
         private CollectionViewSource MenuItemsDeGerenciarDados { get; set; }
@@ -36,7 +38,7 @@ namespace AppAnotacoesGerais.Comandos
             MenuItemsDeGerenciarDados = new CollectionViewSource { Source = itemsGerenciarDados };
 
             // Configura a página de inicialização.
-            SelecionarControleDeUsuario = new PaginaInicial();
+            SelecionarControleDeUsuario = new PaginaInicial();           
         }
 
         private void ExibirPaginaInicial()
@@ -75,7 +77,7 @@ namespace AppAnotacoesGerais.Comandos
                 {
                     "Página Inicial" => new PaginaInicial(),
                     "Anotações Gerais" => new AnotacaoGeral_UI(),
-                    "Informações Pessoais" => new InformacaoPessoal_UI(),
+                    "Informações Pessoais" => new Login_UI(),
                     "Submenu de Anotações Gerais" => new SubmenuDeAnotacoesGerais(),
                     _ => new PaginaInicial()
                 };
@@ -105,7 +107,7 @@ namespace AppAnotacoesGerais.Comandos
 
         public static void SairDoAplicativo()
         {
-            Application.Current.MainWindow.Close();
+            Application.Current.Shutdown();            
         }
 
         private ICommand _comandoSairDoAplicativo;

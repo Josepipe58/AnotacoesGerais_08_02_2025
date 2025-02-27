@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AcessarDadosDoBanco.Entities
+namespace AcessarDadosDoBanco.Modelos
 {
     public class AnotacaoGeral
     {

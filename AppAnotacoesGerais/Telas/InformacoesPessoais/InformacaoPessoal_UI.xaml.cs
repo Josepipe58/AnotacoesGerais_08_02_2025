@@ -1,4 +1,4 @@
-﻿using AcessarDadosDoBanco.Entities;
+﻿using AcessarDadosDoBanco.Modelos;
 using GerenciarDados.AcessarDados;
 using GerenciarDados.Mensagens;
 using System.Windows;
@@ -9,135 +9,104 @@ namespace AppAnotacoesGerais.Telas.InformacoesPessoais
 {
     public partial class InformacaoPessoal_UI : UserControl
     {
+        public InformacaoPessoal InformacaoPessoal { get; set; }
         public string _nomeDoMetodo = string.Empty;
 
         public InformacaoPessoal_UI()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            InformacaoPessoal = new InformacaoPessoal();           
             CarregarDataGrid();
         }
 
         public void CarregarDataGrid()
         {
             DtgDados.ItemsSource = InformacaoPessoal_AD.ObterInformacaoPessoal();
-            TxtTitulo.Focus();
-        }
-
-        private void BtnCadastrar_Click(object sender, RoutedEventArgs e)
-        {
-            if (TxtId.Text == "" && TxtTitulo.Text != "" && TxtDescricao.Text != "")
-            {
-                try
-                {
-                    InformacaoPessoal_AD informacaoPessoal_AD = new();
-                    InformacaoPessoal informacaoPessoal = new()
-                    {
-                        Titulo = TxtTitulo.Text,
-                        Descricao = TxtDescricao.Text
-                    };
-                    informacaoPessoal_AD.Cadastrar(informacaoPessoal);
-
-                    GerenciarMensagens.SucessoAoCadastrar(informacaoPessoal.Id);
-                    LimparEAtualizarDados();
-                }
-                catch (Exception ex)
-                {
-                    _nomeDoMetodo = "BtnCadastrar_Click";
-                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
-                    return;
-                }
-                LimparEAtualizarDados();
-            }
-            else if (TxtId.Text != "" && TxtTitulo.Text != "" && TxtDescricao.Text != "")
-            {
-                GerenciarMensagens.ErroAoCadastrar();
-                TxtDescricao.Focus();
-                return;
-            }
-            else
-            {
-                GerenciarMensagens.PreencherCampoVazio();
-                TxtDescricao.Focus();
-                return;
-            }
+            TxtId.Focus();
         }
 
         private void BtnAlterar_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtId.Text != "" && TxtTitulo.Text != "" && TxtDescricao.Text != "")
+            if (TxtId.Text != "")
             {
                 try
                 {
-                    InformacaoPessoal_AD informacaoPessoal_AD = new();
-                    InformacaoPessoal informacaoPessoal = new()
-                    {
-                        Id = Convert.ToInt32(TxtId.Text),
-                        Titulo = TxtTitulo.Text,
-                        Descricao = TxtDescricao.Text
-                    };
-                    informacaoPessoal_AD.Alterar(informacaoPessoal);
+                    AlterarInformacaoPessoal_UI alterarIP = new(InformacaoPessoal);
 
-                    GerenciarMensagens.SucessoAoCadastrar(informacaoPessoal.Id);
-                    LimparEAtualizarDados();
+                    InformacaoPessoal.Id = Convert.ToInt32(TxtId.Text);
+
+                    InformacaoPessoal_AD informacaoPessoal_AD = new();
+                    InformacaoPessoal informacaoPessoal = new();
+                    bool retorno = informacaoPessoal_AD.VerificarRegistros(InformacaoPessoal.Id);
+                    if (retorno)
+                    {
+                        informacaoPessoal.Id = InformacaoPessoal.Id;
+                        var linha = InformacaoPessoal_AD.ObterInformacaoPessoalPorId(informacaoPessoal.Id);
+                        if (InformacaoPessoal.Id >= 0)
+                        {
+                            if (linha.Count >= 0)
+                            {
+                                if (linha[0].GetType() == typeof(InformacaoPessoal))
+                                {
+                                    informacaoPessoal = linha[0];
+                                    alterarIP.TxtId.Text = Convert.ToString(informacaoPessoal.Id);
+                                    alterarIP.TxtTitulo.Text = informacaoPessoal.Titulo.ToString();
+                                    alterarIP.TxtDescricao.Text = informacaoPessoal.Descricao.ToString();
+                                }
+                            }
+                        }
+                        alterarIP.Show();
+                    }
+                    else
+                    {
+                        _nomeDoMetodo = "BtnAlterar_Click";
+                        GerenciarMensagens.MensagemDeErroDeObterId(InformacaoPessoal.Id, _nomeDoMetodo);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    _nomeDoMetodo = "BtnCadastrar_Click";
+                    _nomeDoMetodo = "BtnAlterar_Click";
                     GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
                     return;
                 }
-                LimparEAtualizarDados();
-            }
-            else if (TxtId.Text == "" && TxtTitulo.Text != "" && TxtDescricao.Text != "")
-            {
-                GerenciarMensagens.ErroAoAlterarOuExcluir();
-                TxtDescricao.Focus();
-                return;
             }
             else
             {
                 GerenciarMensagens.PreencherCampoVazio();
-                TxtDescricao.Focus();
                 return;
             }
         }
 
         private void BtnExcluir_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtId.Text != "" && TxtTitulo.Text != "" && TxtDescricao.Text != "")
+            if (TxtId.Text != "")
             {
                 MessageBoxResult resultado = GerenciarMensagens.ConfirmarExcluir(Convert.ToInt32(TxtId.Text));
-                if (resultado == MessageBoxResult.Yes)
+                if (resultado == MessageBoxResult.No)
                 {
-                    try
-                    {
-                        InformacaoPessoal_AD informacaoPessoal_AD = new();
-                        InformacaoPessoal informacaoPessoal = new()
-                        {
-                            Id = Convert.ToInt32(TxtId.Text)
-                        };
-                        informacaoPessoal_AD.Excluir(informacaoPessoal.Id);
-
-                        GerenciarMensagens.SucessoAoExcluir(informacaoPessoal.Id);
-                        LimparEAtualizarDados();
-                    }
-                    catch (Exception ex)
-                    {
-                        _nomeDoMetodo = "BtnExcluir_Click";
-                        GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
-                    }
-                }
-                else
-                {
+                    TxtId.Text = "";
                     LimparEAtualizarDados();
                     return;
                 }
-            }
-            else if (TxtId.Text == "" && TxtTitulo.Text != "" && TxtDescricao.Text != "")
-            {
-                GerenciarMensagens.ErroAoAlterarOuExcluir();
-                return;
-            }
+                try
+                {
+                    InformacaoPessoal_AD informacaoPessoal_AD = new();
+                    InformacaoPessoal informacaoPessoal = new()
+                    {
+                        Id = Convert.ToInt32(TxtId.Text)
+                    };
+                    informacaoPessoal_AD.Excluir(informacaoPessoal.Id);
+
+                    GerenciarMensagens.SucessoAoExcluir(informacaoPessoal.Id);
+                    LimparEAtualizarDados();
+                }
+                catch (Exception ex)
+                {
+                    _nomeDoMetodo = "BtnExcluir_Click";
+                    GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
+                    return;
+                }
+            }            
             else
             {
                 GerenciarMensagens.PreencherCampoVazio();
@@ -156,86 +125,21 @@ namespace AppAnotacoesGerais.Telas.InformacoesPessoais
                         InformacaoPessoal informacaoPessoal = (InformacaoPessoal)DtgDados.SelectedItems[0];
 
                         TxtId.Text = informacaoPessoal.Id.ToString();
-                        TxtTitulo.Text = informacaoPessoal.Titulo.ToString();
-                        TxtDescricao.Text = informacaoPessoal.Descricao.ToString();
-                        TxtTitulo.Focus();
+                        TxtId.Focus();
                     }
                 }
             }
         }
 
-        private void BtnConsultar_Click(object sender, RoutedEventArgs e)
-        {
-            if (TxtConsultar.Text != "")
-            {
-                /*
-                try
-                {
-                    bool retorno = rn_InformacoesPessoais.VerificarRegistros(TxtConsultar.Text);//Retorna true ou false
-                    if (retorno)
-                    {
-                        ot_InformacoesPessoaisColecao = rn_InformacoesPessoais.ConsultarPorTitulo(TxtConsultar.Text);
-                        DtgDados.ItemsSource = null;
-                        DtgDados.ItemsSource = ot_InformacoesPessoaisColecao;
-                        TxtConsultar.Text = "";
-                        _ = TxtConsultar.Focus();
-                    }
-                    else
-                    {
-                        string resultado = TxtConsultar.Text;
-                        _ = MessageBox.Show($"Nenhum resultado foi encontrado com a palavra \"{resultado}\", que você digitou.",
-                            "Mensagem da Consulta!", MessageBoxButton.OK, MessageBoxImage.Information);
-                        TxtConsultar.Text = "";
-                        _ = TxtConsultar.Focus();
-                        return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _ = MessageBox.Show($"Erro ao Consultar por Título. Detalhes: {ex.Message}", "Mensagem de Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                */
-            }
-            else
-            {
-                _ = MessageBox.Show("O campo de consulta está vazio, preencha-o para continuar.", "Mensagem de Alerta!", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-        }
-
-        private void TxtConsultar_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                BtnConsultar_Click(sender, e);
-            }
-        }
-
-        public void LimparEAtualizarDados()
-        {
-            TxtId.Text = "";
-            TxtTitulo.Text = "";
-            TxtDescricao.Text = "";
-            CarregarDataGrid();
-        }
         private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
-        {
-            CarregarDataGrid();
-        }
-
-        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             LimparEAtualizarDados();
         }
 
-        private void BtnConsultarInfoPes_Click(object sender, RoutedEventArgs e)
+        public void LimparEAtualizarDados()
         {
-            /*
-            FrmInformacoesPessoais_Consultar frm = new FrmInformacoesPessoais_Consultar();
-            frm.Show();
-            Close();
-            */
+            TxtId.Text = "";          
+            CarregarDataGrid();
         }
     }
 }

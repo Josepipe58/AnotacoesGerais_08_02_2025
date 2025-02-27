@@ -1,5 +1,5 @@
-﻿using AcessarDadosDoBanco.Context;
-using AcessarDadosDoBanco.Entities;
+﻿using AcessarDadosDoBanco.ContextoDeDados;
+using AcessarDadosDoBanco.Modelos;
 using GerenciarDados.Mensagens;
 
 namespace GerenciarDados.AcessarDados
@@ -10,7 +10,7 @@ namespace GerenciarDados.AcessarDados
         {
             try
             {
-                using AppDbContexto contexto = new();
+                using Contexto contexto = new();
                 var listaDeSubCategorias = contexto.TSubCategoria.Join(contexto.TCategoria,
                     sc => sc.CategoriaId,
                     c => c.Id,
@@ -39,7 +39,7 @@ namespace GerenciarDados.AcessarDados
         {
             try
             {
-                using AppDbContexto contexto = new();
+                using Contexto contexto = new();
                 var listaDeSubCategorias = contexto.TSubCategoria.Join(contexto.TCategoria,
                     sc => sc.CategoriaId,
                     c => c.Id,

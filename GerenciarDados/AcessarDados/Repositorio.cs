@@ -1,4 +1,4 @@
-﻿using AcessarDadosDoBanco.Context;
+﻿using AcessarDadosDoBanco.ContextoDeDados;
 using GerenciarDados.Mensagens;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,14 +7,14 @@ namespace GerenciarDados.AcessarDados
     public class Repositorio<T> : IDisposable where T : class
     {
         public static string _nomeDoMetodo = string.Empty;
-        private readonly AppDbContexto _contexto;
+        private readonly Contexto _contexto;
 
         public bool Salvar { get; set; } = true;
 
         public Repositorio(bool save = true)
         {
             Salvar = save;
-            _contexto = new AppDbContexto();
+            _contexto = new Contexto();
         }
 
         public T Cadastrar(T objeto)

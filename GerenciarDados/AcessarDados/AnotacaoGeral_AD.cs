@@ -1,5 +1,5 @@
-﻿using AcessarDadosDoBanco.Context;
-using AcessarDadosDoBanco.Entities;
+﻿using AcessarDadosDoBanco.ContextoDeDados;
+using AcessarDadosDoBanco.Modelos;
 using GerenciarDados.Mensagens;
 using System.Data;
 
@@ -12,7 +12,7 @@ namespace GerenciarDados.AcessarDados
         {
             try
             {
-                using AppDbContexto contexto = new();
+                using Contexto contexto = new();
                 var listaDeAnotacoesGerais = contexto.TAnotacaoGeral.Select(d => new AnotacaoGeral()
                 {
                     Id = d.Id,
@@ -33,36 +33,11 @@ namespace GerenciarDados.AcessarDados
             }
         }
 
-        public static List<AnotacaoGeral> ConsultarPorCategoria(string categoria)
-        {
-            try
-            {
-                using AppDbContexto contexto = new();
-                var listaDeAnotacoesGerais = contexto.TAnotacaoGeral.Select(an => new AnotacaoGeral()
-                {
-                    Id = an.Id,
-                    NomeDaCategoria = an.NomeDaCategoria,
-                    NomeDaSubCategoria = an.NomeDaSubCategoria,
-                    NomeDaDescricao = an.NomeDaDescricao,
-                    Descricao = an.Descricao,
-                    Data = an.Data.Date
-                }).Where(an => an.NomeDaCategoria == categoria).OrderByDescending(an => an.Id).ToList();
-
-                return [.. listaDeAnotacoesGerais];
-            }
-            catch (Exception ex)
-            {
-                _nomeDoMetodo = "ConsultarPorCategoria";
-                GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
-                return [];
-            }
-        }
-
         public static List<AnotacaoGeral> ObterAnotacoesGeraisPorId(int id)
         {
             try
             {
-                using AppDbContexto contexto = new();
+                using Contexto contexto = new();
                 var listaDeAnotacoesGerais = contexto.TAnotacaoGeral.Select(d => new AnotacaoGeral()
                 {
                     Id = d.Id,

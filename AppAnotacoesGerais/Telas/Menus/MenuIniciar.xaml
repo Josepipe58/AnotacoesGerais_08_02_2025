@@ -14,8 +14,8 @@
     </Window.DataContext>
 
     <Grid>
-        <Border Background="#FF1EE3F1" BorderBrush="#FFFFFF" BorderThickness="0,5,0,5" CornerRadius="25" HorizontalAlignment="Stretch" Height="NaN" 
-                VerticalAlignment="Stretch" Width="NaN"/>
+        <Border Background="#FF1EE3F1" BorderBrush="#FFFFFF" BorderThickness="0,5,0,5" CornerRadius="25" HorizontalAlignment="Stretch" 
+                Height="NaN" Width="NaN" VerticalAlignment="Stretch" />
         <Grid Margin="5,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -37,24 +37,24 @@
                     <ItemsControl ItemsSource="{Binding SourceGerenciarDados}" Background="#FF021507" Margin="0,40,0,0">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Width="280" Margin="10 5 20 0" Height="100">
-                                    <Button Content="{Binding GerenciarDados}" FontSize="14" Width="280" Style="{StaticResource BtnRetangularVerdeEscuro}"
+                                <StackPanel Width="280" Margin="15,15,15,-10" Height="100">
+                                    <Button Content="{Binding GerenciarDados}" Width="280" Style="{StaticResource BtnRetangularVerdeEscuro}"
                                             CommandParameter="{Binding GerenciarDados}" Command="{Binding DataContext.ComandoDoMenuGerenciarDados, 
-                                            RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}}" Margin="0,20,0,0" Height="60"/>
+                                            RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}}" Height="60"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
                     <!--| Botões |-->
-                    <Button x:Name="BtnSqlServer" Content="Abrir Sql Server" FontWeight="Bold" FontSize="16" Style="{DynamicResource BtnRetangularVerdeEscuro}" 
-                            Command="{Binding ComandoAbrirBancoDeDados}" Height="60" Width="280" Margin="45,480,45,0" HorizontalAlignment="Stretch"/>
+                    <Button x:Name="BtnSqlServer" Content="Abrir Sql Server" FontWeight="Bold" Style="{DynamicResource BtnRetangularVerdeEscuro}" 
+                            Command="{Binding ComandoAbrirBancoDeDados}" Height="60" Width="280" Margin="45,470,45,0" HorizontalAlignment="Stretch"/>
 
-                    <Button x:Name="BtnSair" Content="Sair do Aplicativo" FontWeight="Bold" FontSize="16" Style="{DynamicResource BtnRetangularVerdeEscuro}" 
+                    <Button x:Name="BtnSair" Content="Sair do Aplicativo" FontWeight="Bold" Style="{DynamicResource BtnRetangularVerdeEscuro}" 
                             Command="{Binding ComandoSairDoAplicativo}"
-                            Height="60" Width="280" Margin="45,580,45,0" HorizontalAlignment="Stretch"/>
+                            Height="60" Width="280" Margin="45,570,45,0" HorizontalAlignment="Stretch"/>
                 </Grid>
-                <Grid Margin="38,676,42,42" Background="{DynamicResource MenuIniciar_Imagem}" />
+                <Grid Margin="38,680,42,42" Background="{DynamicResource MenuIniciar_Imagem}" />
             </Grid>
             <!--| Página Principal |-->
             <Grid Margin="5,5,0,0" Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Height="980">
