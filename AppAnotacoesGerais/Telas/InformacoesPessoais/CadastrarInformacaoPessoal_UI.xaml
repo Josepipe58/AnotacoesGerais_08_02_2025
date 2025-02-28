@@ -3,9 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:comando="clr-namespace:AppAnotacoesGerais.Comandos"
              mc:Ignorable="d" xml:lang="pt-BR" d:DesignHeight="950" d:DesignWidth="1050" Margin="0,5,0,0">
-
     
     <Grid>
         <Border CornerRadius="25,25,25,25" Background="#FF021507" BorderThickness="2,4,3,9">
@@ -15,8 +13,7 @@
                 <!--| Título |-->
                 <Label Content="CADASTRAR INFORMAÇÃO PESSOAL" Style="{DynamicResource LabelTransparente}" FontSize="28" Height="50" Margin="180,0,0,0" Width="510"/>
 
-                <!--| Imagem |-->
-
+                <!--|Borda do Título |-->
                 <Border  CornerRadius="25,25,25,25" Background="#FF22C5B2" BorderThickness="2,4,3,9" Width="765" Margin="10,100,0,0" HorizontalAlignment="Left" 
                          Height="120" VerticalAlignment="Top">
 
@@ -24,15 +21,13 @@
                              AcceptsReturn="True" Margin="10,10,10,10"/>
                 </Border>
 
-                <!--|Borda Inferior -->
+                <!--|Borda da Descrição |-->
                 <Border x:Name="Borda03" Background="#FF22C5B2" CornerRadius="25,25,25,25" BorderThickness="2,4,3,9" Margin="10,270,0,0" HorizontalAlignment="Left" 
                         Width="765" Height="630" VerticalAlignment="Top">
 
                     <TextBox x:Name="TxtDescricao" FontSize="20" FontWeight="Bold" Foreground="#FF0F0FB0" Margin="10,10,10,10" TextWrapping="Wrap" 
                              AcceptsTab="True" AcceptsReturn="True"/>
                 </Border>
-
-                <!--| Calendário |-->
 
                 <!--| Rótulos[Label] -->
                 <Label Content="Código" Style="{DynamicResource LabelTransparente}" Height="40" Width="84" Margin="850,35,0,0"/>
@@ -48,8 +43,6 @@
                  IsReadOnly="True"/>
 
                 <TextBox x:Name="TxtConsultar" Style="{DynamicResource TxtAzulClaroEBordaAzul}" Margin="904,121,0,0" Height="40" Width="88"  FontSize="16"/>
-
-                <!--|TextBlock |-->
 
                 <!--| Botões -->
                 <Button x:Name="BtnConsultar" Content="Consultar" Style="{DynamicResource BtnRetangularVerdeEscuro}"  Width="200" Margin="810,200,0,0"
@@ -67,7 +60,6 @@
                 <Button x:Name="BtnAtualizar" Content="Atualizar" Style="{DynamicResource BtnRetangularVerdeEscuro}" Width="190" Margin="810,560,0,0"
                         Click="BtnAtualizar_Click"/>
             </Grid>
-
         </Border>
     </Grid>
 </UserControl>

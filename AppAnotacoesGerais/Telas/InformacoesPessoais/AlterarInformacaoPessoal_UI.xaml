@@ -14,8 +14,7 @@
                 <!--| Título |-->
                 <Label Content="ALTERAR INFORMAÇÃO PESSOAL" Style="{DynamicResource LabelTransparente}" FontSize="28" Height="50" Margin="180,0,0,0" Width="510"/>
 
-                <!--| Imagem |-->
-
+                <!--|Borda do Título -->
                 <Border  CornerRadius="25,25,25,25" Background="#FF22C5B2" BorderThickness="2,4,3,9" Width="745" Margin="30,100,0,0" HorizontalAlignment="Left" 
                          Height="120" VerticalAlignment="Top">
 
@@ -23,15 +22,13 @@
                              AcceptsReturn="True" Margin="10,10,10,10"/>
                 </Border>
 
-                <!--|Borda Inferior -->
+                <!--|Borda da Descrição -->
                 <Border x:Name="Borda03" Background="#FF22C5B2" CornerRadius="25,25,25,25" BorderThickness="2,4,3,9" Margin="30,270,0,0" HorizontalAlignment="Left" 
                         Width="745" Height="610" VerticalAlignment="Top">
 
                     <TextBox x:Name="TxtDescricao" FontSize="20" FontWeight="Bold" Foreground="#FF0F0FB0" Margin="10,10,10,10" TextWrapping="Wrap" 
                              AcceptsTab="True" AcceptsReturn="True"/>
                 </Border>
-
-                <!--| Calendário |-->
 
                 <!--| Rótulos[Label] -->
                 <Label Content="Código" Style="{DynamicResource LabelTransparente}" Height="40" Width="84" Margin="870,40,0,0"/>
@@ -43,11 +40,8 @@
                 <!--| TextBoxes |-->
                 <TextBox x:Name="TxtId" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="870,65,0,0" Height="40" Width="90" FontSize="16" FontWeight="Bold" 
                  IsReadOnly="True"/>
-
-                <!--|TextBlock |-->
-
+                
                 <!--| Botões -->
-
                 <Button x:Name="BtnAlterar" Content="Alterar" Style="{DynamicResource BtnRetangularVerdeEscuro}" Width="190" Margin="820,130,0,0"
                 Click="BtnAlterar_Click"/>
 

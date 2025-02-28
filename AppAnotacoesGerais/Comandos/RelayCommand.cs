@@ -4,8 +4,6 @@ namespace AppAnotacoesGerais.Comandos
 {
     public class RelayCommand : NotificarPropriedadeAlterada, ICommand
     {
-        private ComandosDaTelaPrincipal _comandosDaTelaPrincipal;
-
         private Action<object> _execute;
 
         private Func<object, bool> _canExecute;        
@@ -32,7 +30,7 @@ namespace AppAnotacoesGerais.Comandos
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null || CanExecute(parameter); //&& !string.IsNullOrEmpty(_comandosDaTelaPrincipal.Senha);
+            return _canExecute == null || CanExecute(parameter);
         }
 
         public void Execute(object parameter)

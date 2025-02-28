@@ -76,7 +76,6 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                     anotacaoGeral_AD.Alterar(anotacaoGeral);
                     GerenciarMensagens.SucessoAoAlterar(anotacaoGeral.Id);
                     Close();
-                    //LimparDados();
                 }
                 catch (Exception ex)
                 {

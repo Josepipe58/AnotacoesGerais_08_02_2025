@@ -138,6 +138,8 @@ namespace AppAnotacoesGerais.Comandos
 
         public void FazerLoginInformacaoPessoal()
         {
+           
+            
             if (Senha == "bj250281")
             {
                 SelecionarControleDeUsuario = new InformacaoPessoal_UI();
@@ -146,12 +148,13 @@ namespace AppAnotacoesGerais.Comandos
             else if (Senha == null)
             {
                 MessageBox.Show($"Digite sua senha para logar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                Senha = null;
+                return;
             }
             else if (Senha != "bj250281")
             {
                 MessageBox.Show($"Senha inválida, tente novamente.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Senha = null;
+                return;
             }
         }
 

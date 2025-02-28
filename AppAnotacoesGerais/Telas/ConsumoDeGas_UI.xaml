@@ -69,7 +69,7 @@
                 Margin="185,220,0,0" Click="BtnAlterar_Click"/>
 
         <Button x:Name="BtnExcluir" Content="Excluir" Style="{DynamicResource BtnRetangularVerdeEscuro}" Height="50" Width="150"
-        Margin="360,220,0,0" Click="BtnExcluir_Click"/>
+                Margin="360,220,0,0" Click="BtnExcluir_Click"/>
 
         <Button x:Name="BtnAtualizar" Content="Atualizar" Style="{DynamicResource BtnRetangularVerdeEscuro}" FontSize="16" Height="50" Width="150"
                 Margin="530,220,0,0" Click="BtnAtualizar_Click"/>

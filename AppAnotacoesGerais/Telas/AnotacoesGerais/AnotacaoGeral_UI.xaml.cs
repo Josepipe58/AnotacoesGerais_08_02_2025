@@ -15,13 +15,74 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
         {
             InitializeComponent();
             AnotacaoGeral = new AnotacaoGeral();
-            CarregarDataGrid();
-        }      
+        }
 
-        public void CarregarDataGrid()
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            DtgDados.ItemsSource = AnotacaoGeral_AD.ObterAnotacoesGerais();
+            //Carregar ComboBox da Categoria
+            Categoria_AD categoria_AD = new();
+            CbxCategoria.ItemsSource = categoria_AD.SelecionarTodos();
+            CbxCategoria.DisplayMemberPath = "NomeDaCategoria";
+            CbxCategoria.SelectedValuePath = "Id";
+            CbxCategoria.SelectedIndex = -1;
+
+            ConsultasDeAnotacoesGerais();
             ContadorDeRegistros();
+        }
+
+        private void CbxCategoria_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Carregar ComboBox da SubCategoria
+            CbxSubCategoria.ItemsSource = SubCategoria_AD.ObterSubCategoriasPorId(Convert.ToInt32(CbxCategoria.SelectedValue));
+            CbxSubCategoria.DisplayMemberPath = "NomeDaSubCategoria";
+            CbxSubCategoria.SelectedValuePath = "Id";
+            CbxSubCategoria.SelectedIndex = -1;
+        }
+
+        private void CbxSubCategoria_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CbxNomeDaDescricao.ItemsSource = NomeDaDescricao_AD.ObterNomeDaDescricaoPorId(Convert.ToInt32(CbxSubCategoria.SelectedValue));
+            CbxNomeDaDescricao.DisplayMemberPath = "Nome";
+            CbxNomeDaDescricao.SelectedValuePath = "Id";
+            CbxNomeDaDescricao.SelectedIndex = -1;
+        }
+
+        public void ConsultasDeAnotacoesGerais()
+        {
+            try
+            {
+                if (CbxCategoria.Text == "" && CbxSubCategoria.Text == "" && CbxNomeDaDescricao.Text == "")
+                {
+                    DtgDados.ItemsSource = AnotacaoGeral_AD.ObterAnotacoesGerais();
+                    TxtConsultar.Focus();
+                }
+                else if (CbxCategoria.Text != "" && CbxSubCategoria.Text == "" && CbxNomeDaDescricao.Text == "")
+                {
+                    DtgDados.ItemsSource = AnotacaoGeral_AD.ObterAnotacoesGerais().Where(dp => dp.NomeDaCategoria == CbxCategoria.Text);
+                }
+                else if (CbxCategoria.Text != "" && CbxSubCategoria.Text != "" && CbxNomeDaDescricao.Text == "")
+                {
+                    DtgDados.ItemsSource = AnotacaoGeral_AD.ObterAnotacoesGerais().Where(dp => dp.NomeDaCategoria == CbxCategoria.Text
+                    && dp.NomeDaSubCategoria == CbxSubCategoria.Text);
+                }
+                else if (CbxCategoria.Text != "" && CbxSubCategoria.Text != "" && CbxNomeDaDescricao.Text != "")
+                {
+                    DtgDados.ItemsSource = AnotacaoGeral_AD.ObterAnotacoesGerais().Where(dp => dp.NomeDaCategoria == CbxCategoria.Text
+                    && dp.NomeDaSubCategoria == CbxSubCategoria.Text && dp.NomeDaDescricao == CbxNomeDaDescricao.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possível fazer nenhum tipo de consulta de Despesas.", "Mensagem de Erro!",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                _nomeDoMetodo = "ConsultasDeDespesas";
+                GerenciarMensagens.ErroDeExcecaoENomeDoMetodo(ex, _nomeDoMetodo);
+                return;
+            }
         }
 
         public void ContadorDeRegistros()
@@ -36,11 +97,8 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             TxtQtdeRegistros.Text = Convert.ToString(contador);
         }
 
-        
-
         private void BtnAlterar_Click(object sender, RoutedEventArgs e)
         {
-
             AlterarAnotacaoGeral_UI alterarAG = new(AnotacaoGeral);
             try
             {
@@ -93,7 +151,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                 if (resultado == MessageBoxResult.No)
                 {
                     TxtConsultar.Text = "0";
-                    CarregarDataGrid();
+                    ConsultasDeAnotacoesGerais();
                     return;
                 }
                 try
@@ -106,7 +164,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                     anotacaoGeral_AD.Excluir(anotacaoGeral);
                     GerenciarMensagens.SucessoAoExcluir(anotacaoGeral.Id);
 
-                    CarregarDataGrid();
+                    ConsultasDeAnotacoesGerais();
                     TxtConsultar.Text = "0";
                     return;
                 }
@@ -129,10 +187,43 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             }
         }
 
+        private void CbxCategoria_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ConsultasDeAnotacoesGerais();
+        }
+
+        private void CbxSubCategoria_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ConsultasDeAnotacoesGerais();
+        }
+
+        private void CbxNomeDaDescricao_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ConsultasDeAnotacoesGerais();
+        }
+
+        private void DtgDados_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (DtgDados.SelectedIndex >= 0)
+            {
+                if (DtgDados.SelectedItems.Count >= 0)
+                {
+                    if (DtgDados.SelectedItems[0].GetType() == typeof(AnotacaoGeral))
+                    {
+                        AnotacaoGeral anotacaoGeral = (AnotacaoGeral)DtgDados.SelectedItems[0];
+                        TxtConsultar.Text = anotacaoGeral.Id.ToString();
+                        TxtConsultar.Focus();
+                    }
+                }
+            }
+        }
+
         private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
         {
             AnotacaoGeral_AD anotacaoGeral_AD = new();
-            DtgDados.ItemsSource = anotacaoGeral_AD.SelecionarTodos().OrderByDescending(an => an.Id);
+            ConsultasDeAnotacoesGerais();
+            //DtgDados.ItemsSource = anotacaoGeral_AD.SelecionarTodos().OrderByDescending(an => an.Id);
+            UserControl_Loaded(sender, e);
             TxtConsultar.Text = "0";
         }
     }

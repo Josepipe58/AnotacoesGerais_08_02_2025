@@ -6,7 +6,8 @@ namespace AppAnotacoesGerais.Telas.InformacoesPessoais
     public partial class CaixaDeSenha : UserControl
     {
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        // Usando uma Propriedade de Dependência como o armazenamento de apoio para Minha Propriedade.
+        // Isso permite animação, estilo, vinculação, etc...
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(CaixaDeSenha), new PropertyMetadata(string.Empty));
 

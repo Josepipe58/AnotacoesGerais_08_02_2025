@@ -12,7 +12,6 @@
     <Window.DataContext>
         <comando:ComandosDaTelaPrincipal/>
     </Window.DataContext>
-
     <Grid>
         <Border Background="#FF1EE3F1" BorderBrush="#FFFFFF" BorderThickness="0,5,0,5" CornerRadius="25" HorizontalAlignment="Stretch" 
                 Height="NaN" Width="NaN" VerticalAlignment="Stretch" />

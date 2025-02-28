@@ -230,7 +230,6 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             LimparDados();
         }
 
-        //Limpar
         public void LimparDados()
         {
             TxtId.Text = "";

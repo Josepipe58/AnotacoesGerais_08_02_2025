@@ -100,7 +100,7 @@
                             Margin="540,240,0,0" Click="BtnAtualizar_Click"/>
                 </Grid>
             </Border>
-        </Grid>
+        </Grid>        
         <!--| DataGrid de DtgDados |-->
         <DataGrid x:Name="DtgDados" Style="{DynamicResource DtgDadosCorDaLinhaBisqueWhite}" Margin="5,0,5,5"                  
                   ColumnHeaderStyle="{DynamicResource DtgCabecalhoAmarelo}" IsReadOnly="True" Grid.Row="1"
