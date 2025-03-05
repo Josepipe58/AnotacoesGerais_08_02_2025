@@ -19,40 +19,46 @@
                Margin="530,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Grid.RowSpan="2"/>
 
             <!--| Rótulos(Label) |-->
-            <Label Content="Consultar Registros" Style="{DynamicResource LabelTransparente}" Margin="739,156,0,0" Height="34" Width="165"/>
+            <Label Content="Categorias" Style="{DynamicResource LabelTransparente}" Margin="55,70,0,0" Height="34" Width="206"/>
 
-            <Label Content="Quantidade de Registros" Style="{DynamicResource LabelTransparente}" Margin="999,156,0,0" Height="34" Width="206"/>
+            <Label Content="SubCategorias" Style="{DynamicResource LabelTransparente}" Margin="400,70,0,0" Height="34" Width="206"/>
+
+            <Label Content="Nome da Descrição" Style="{DynamicResource LabelTransparente}" Margin="805,70,0,0" Height="34" Width="206"/>
+
+            <Label Content="Consultar Registros" Style="{DynamicResource LabelTransparente}" Margin="739,175,0,0" Height="34" Width="165"/>
+
+            <Label Content="Quantidade de Registros" Style="{DynamicResource LabelTransparente}" Margin="999,175,0,0" Height="34" Width="206"/>
 
             <!--| TextBoxes |-->
-            <TextBox x:Name="TxtConsultar" Width="60" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="909,154,0,0"
+            <TextBox x:Name="TxtConsultar" Width="60" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="909,172,0,0"
                      Text="{Binding AnotacaoGeralModel.Id, UpdateSourceTrigger=PropertyChanged}" Height="34" Padding="20 0 0 0" Cursor=""/>
 
-            <TextBox x:Name="TxtQtdeRegistros" Width="60" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="1210,154,0,0" 
+            <TextBox x:Name="TxtQtdeRegistros" Width="60" Style="{DynamicResource TxtBrancoEBordaAzul}" Margin="1210,172,0,0" 
                      IsReadOnly="True" Height="34" Foreground="#FF0617C7" Padding="20 0 0 0"/>
 
             <!--| ComboBoxes |-->
-            <ComboBox Name="CbxCategoria" Height="40" Width="300" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="50,80,0,0"
+            <ComboBox Name="CbxCategoria" Height="40" Width="300" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="55,95,0,0"
                       SelectionChanged="CbxCategoria_SelectionChanged" MouseLeave="CbxCategoria_MouseLeave"/>
 
-            <ComboBox Name="CbxSubCategoria" Height="40" Width="350" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="400,80,0,0"
+            <ComboBox Name="CbxSubCategoria" Height="40" Width="350" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="405,95,0,0"
                       SelectionChanged="CbxSubCategoria_SelectionChanged" MouseLeave="CbxSubCategoria_MouseLeave"/>
 
-            <ComboBox Name="CbxNomeDaDescricao" Height="40" Width="400" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="800,80,0,0"
+            <ComboBox Name="CbxNomeDaDescricao" Height="40" Width="400" Style="{DynamicResource ComboBoxAzulMarinho}" Margin="805,95,0,0"
                       MouseLeave="CbxNomeDaDescricao_MouseLeave"/>
 
             <!--| Botões |-->
-            <Button x:Name="BtnCadastrar" Content="Cadastrar" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="48,146,0,0"  
+            <Button x:Name="BtnCadastrar" Content="Cadastrar" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="48,165,0,0"  
                     Width="150" Height="50"
                     Command="{Binding Path=DataContext.ComandoAbrirJanelaDeCadastrar, RelativeSource={RelativeSource FindAncestor, 
                     AncestorType={x:Type Window}}}"/>
 
-            <Button x:Name="BtnAlterar" Content="Alterar" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="218,146,0,0" 
+            <Button x:Name="BtnAlterar" Content="Alterar" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="218,165,0,0" 
                     Width="150" Height="50" Click="BtnAlterar_Click"  />
 
-            <Button x:Name="BtnExcluir" Content="Excluir" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="388,146,0,0" 
+            <Button x:Name="BtnExcluir" Content="Excluir" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="388,165,0,0" 
                     Width="150" Height="50" Click="BtnExcluir_Click" />
 
-            <Button x:Name="BtnAtualizar" Content="Atualizar" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="558,146,0,0" 
+            <Button x:Name="BtnAtualizar" Content="Atualizar" Style="{StaticResource BtnAzulEscuroEAzulClaro}" Margin="558,165,0,0" 
                    Click="BtnAtualizar_Click" Width="150" Height="50" />
         </Grid>
         <Grid x:Name="GridInferior" Background="#FFFCFFFF" Margin="0,245,0,0">
@@ -69,7 +75,7 @@
 
                 <!--| Data Grid de Dados |-->
                 <DataGrid x:Name="DtgDados" Style="{DynamicResource DtgEditorDeTextoInternoDaGridInferior}" Margin="5,5,5,5" BorderBrush="#FF0C1889" BorderThickness="5"
-                          MouseDoubleClick="DtgDados_MouseDoubleClick">
+                          MouseDoubleClick="DtgDados_MouseDoubleClick" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Código" Binding="{Binding Id, StringFormat=\{0:D4\}}" HeaderStyle="{DynamicResource CabecalhoEstilo}" Width="100"/>
                         <DataGridTextColumn Header="Categoria" Binding="{Binding NomeDaCategoria}" HeaderStyle="{DynamicResource CabecalhoEstilo}" Width="320"/>

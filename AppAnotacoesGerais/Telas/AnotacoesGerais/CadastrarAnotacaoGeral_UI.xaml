@@ -70,6 +70,9 @@
         <Button x:Name="BtnAtualizar" Content="Atualizar" Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Height="60" Width="190" Margin="584,325,0,0"
                 Click="BtnAtualizar_Click"/>
 
+        <Button x:Name="BtnVoltarAnotacaoGeral" Content="Voltar Anotação Geral " Style="{DynamicResource BtnAzulEscuroEAzulClaro}" Height="60" Width="250" 
+                Margin="550,405,0,0" Command="{Binding ComandoVoltarAnotacaoGeral}"/>
+
         <!--| Comboboxes -->
         <ComboBox x:Name="CbxCategoria" Style="{DynamicResource ComboBoxAzulMarinho}" Height="45" Width="330" Margin="42,68,0,0"
                   SelectionChanged="CbxCategoria_SelectionChanged"/>

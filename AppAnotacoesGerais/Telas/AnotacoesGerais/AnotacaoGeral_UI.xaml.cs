@@ -85,18 +85,6 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             }
         }
 
-        public void ContadorDeRegistros()
-        {
-            AnotacaoGeral_AD anotacaoGeral_AD = new();
-            int contador = anotacaoGeral_AD.ContadorRegistros();
-            if (contador <= 0)
-            {
-                MessageBox.Show($"Atenção! Não existe nenhum registro no Banco de Dados.",
-                            "Aviso!", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            TxtQtdeRegistros.Text = Convert.ToString(contador);
-        }
-
         private void BtnAlterar_Click(object sender, RoutedEventArgs e)
         {
             AlterarAnotacaoGeral_UI alterarAG = new(AnotacaoGeral);
@@ -122,6 +110,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                                 alterarAG.TxtId.Text = Convert.ToString(anotacaoGeral.Id);
                                 alterarAG.CbxCategoria.Text = anotacaoGeral.NomeDaCategoria.ToString();
                                 alterarAG.CbxSubCategoria.Text = anotacaoGeral.NomeDaSubCategoria.ToString();
+                                alterarAG.CbxNomeDaDescricao.Text = anotacaoGeral.NomeDaDescricao.ToString();
                                 alterarAG.TxtDescricao.Text = anotacaoGeral.Descricao.ToString();
                                 alterarAG.DtpData.Text = anotacaoGeral.Data.ToString();
                             }
@@ -187,6 +176,18 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
             }
         }
 
+        public void ContadorDeRegistros()
+        {
+            AnotacaoGeral_AD anotacaoGeral_AD = new();
+            int contador = anotacaoGeral_AD.ContadorRegistros();
+            if (contador <= 0)
+            {
+                MessageBox.Show($"Atenção! Não existe nenhum registro no Banco de Dados.",
+                            "Aviso!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            TxtQtdeRegistros.Text = Convert.ToString(contador);
+        }
+
         private void CbxCategoria_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             ConsultasDeAnotacoesGerais();
@@ -212,6 +213,9 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                     {
                         AnotacaoGeral anotacaoGeral = (AnotacaoGeral)DtgDados.SelectedItems[0];
                         TxtConsultar.Text = anotacaoGeral.Id.ToString();
+                        //CbxCategoria.Text = anotacaoGeral.NomeDaCategoria.ToString();
+                        //CbxSubCategoria.Text = anotacaoGeral.NomeDaSubCategoria.ToString();
+                        //CbxNomeDaDescricao.Text = anotacaoGeral.NomeDaDescricao.ToString();                        
                         TxtConsultar.Focus();
                     }
                 }

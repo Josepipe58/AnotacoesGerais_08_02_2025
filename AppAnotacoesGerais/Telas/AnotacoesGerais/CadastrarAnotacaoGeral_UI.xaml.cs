@@ -179,6 +179,7 @@ namespace AppAnotacoesGerais.Telas.AnotacoesGerais
                                     TxtId.Text = Convert.ToString(AnotacaoGeral.Id);
                                     CbxCategoria.Text = AnotacaoGeral.NomeDaCategoria.ToString();
                                     CbxSubCategoria.Text = AnotacaoGeral.NomeDaSubCategoria.ToString();
+                                    CbxNomeDaDescricao.Text = AnotacaoGeral.NomeDaDescricao.ToString();
                                     TxtDescricao.Text = AnotacaoGeral.Descricao.ToString();
                                     DtpData.Text = AnotacaoGeral.Data.ToString();
                                 }

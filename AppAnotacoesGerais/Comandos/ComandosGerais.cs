@@ -121,6 +121,24 @@ namespace AppAnotacoesGerais.Comandos
             }
         }
 
+        public void VoltarAnotacaoGeral()
+        {
+            SelecionarControleDeUsuario = new AnotacaoGeral_UI();
+        }
+
+        private ICommand _comandoVoltarAnotacaoGeral;
+        public ICommand ComandoVoltarAnotacaoGeral
+        {
+            get
+            {
+                if (_comandoVoltarAnotacaoGeral == null)
+                {
+                    _comandoVoltarAnotacaoGeral = new RelayCommand(param => VoltarAnotacaoGeral());
+                }
+                return _comandoVoltarAnotacaoGeral;
+            }
+        }
+
         #endregion
 
         #region | Comandos de Informações Pessoais |

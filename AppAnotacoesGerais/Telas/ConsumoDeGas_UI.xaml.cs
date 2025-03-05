@@ -18,10 +18,10 @@ namespace AppAnotacoesGerais.Telas
             //Atualizar Datas.
             DtpDataDaTroca.Text = Convert.ToString(DateTime.Now.ToString("d"));
             DtpDataDaCompra.Text = Convert.ToString(DateTime.Now.ToString("d"));
-            ComboBoxDeCategorias();
+            ComboBoxDeDataAnterior();
         }
 
-        private void ComboBoxDeCategorias()
+        private void ComboBoxDeDataAnterior()
         {
             try
             {
@@ -205,6 +205,21 @@ namespace AppAnotacoesGerais.Telas
         {
             if (e.Key == Key.Enter)
             {
+                int titulo = 0;
+                if (TxtCodigoDataAnterior.Text != "")
+                {                   
+                    titulo = Convert.ToInt32(TxtCodigoDataAnterior.Text) - 1;
+                }
+               
+
+                // Combobox da Data Anterior.
+                ConsumoDeGas_AD consumoDeGas_AD = new();
+                CbxDataAnterior.ItemsSource = consumoDeGas_AD.SelecionarTodos();
+                CbxDataAnterior.DisplayMemberPath = "DataDaTroca";
+                CbxDataAnterior.SelectedValuePath = "Id";
+                CbxDataAnterior.SelectedIndex = titulo;
+                TxtPreco.Focus();               
+
                 DateTime dataAnterior, dataDaTroca;
                 TimeSpan diasDeConsumo;
                 dataAnterior = Convert.ToDateTime(CbxDataAnterior.Text);
@@ -255,13 +270,14 @@ namespace AppAnotacoesGerais.Telas
         private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
         {
             CbxDataAnterior.SelectedIndex = 0;
-            ComboBoxDeCategorias();
+            ComboBoxDeDataAnterior();
             LimparEAtualizarDados();
         }
 
         public void LimparEAtualizarDados()
         {
             TxtId.Text = "";
+            TxtCodigoDataAnterior.Text = "";
             TxtConsumoEmDias.Text = "";
             TxtPreco.Text = "";
             TxtFornecedor.Text = "";
